@@ -1,0 +1,13 @@
+title: Paul Hobson
+description: Executive technology leader
+url: https://pauldhobson.ca
+baseurl: ""
+
+markdown: kramdown
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-include-cache
+
