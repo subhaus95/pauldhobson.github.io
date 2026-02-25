@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing Loom — Loom</title>
+  <meta name="description" content="A walkthrough of the Loom stack and its capabilities.">
+
+  <!-- Dark mode flash prevention (exact copy from _includes/head.html) -->
+  <script>
+    (function () {
+      var s = localStorage.getItem('loom-dark');
+      var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="reveal-theme-base" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css" crossorigin>
+  <link rel="stylesheet" href="/assets/css/presentation.css">
+</head>
+<body>
+
+  <a href="/" class="presentation-back" title="Back to Loom">
+    ← Loom
+  </a>
+
+  <div class="reveal">
+    <div class="slides" id="slides-container"></div>
+  </div>
+
+  <!-- Jekyll-rendered content; split into slides by JS below.
+       Not display:none or hidden — Pagefind needs to crawl this text. -->
+  <div id="slides-raw" data-pagefind-body style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;"><h1 id="introducing-loom">Introducing Loom</h1>
+<p>LoomCollective — 2026</p>
+
+<hr />
+
+<h2 id="what-is-loom">What is Loom?</h2>
+
+<p>A Jekyll theme built for <strong>technical publishing</strong>.</p>
+
+<ul>
+  <li>Clean typography by default</li>
+  <li>Progressive visualisation layer (ECharts, D3, Leaflet, Mapbox)</li>
+  <li>Dark mode throughout</li>
+  <li>Full-text search via Pagefind</li>
+</ul>
+
+<hr />
+
+<h2 id="the-stack">The Stack</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Static site</td>
+      <td>Jekyll 4.3</td>
+    </tr>
+    <tr>
+      <td>CSS</td>
+      <td>Tailwind + custom tokens</td>
+    </tr>
+    <tr>
+      <td>JS</td>
+      <td>Alpine.js + ES modules</td>
+    </tr>
+    <tr>
+      <td>Build</td>
+      <td>Vite 6</td>
+    </tr>
+    <tr>
+      <td>Deploy</td>
+      <td>GitHub Actions</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="visualisation-runtime">Visualisation Runtime</h2>
+
+<p><code class="language-plaintext highlighter-rouge">assets/js/core.js</code> scans each page and loads only what it needs:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Only ECharts loads on pages that use [data-viz]</span>
+<span class="k">if </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nf">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">[data-viz]</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+  <span class="nf">loadECharts</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>No JavaScript tax on simple posts.</p>
+
+<hr />
+
+<h2 id="dark-mode">Dark Mode</h2>
+
+<p>Stored in <code class="language-plaintext highlighter-rouge">localStorage</code> as <code class="language-plaintext highlighter-rouge">loom-dark</code>.</p>
+
+<p>Applied synchronously in <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> — no flash on load.</p>
+
+<p><span class="accent">The accent colour #F0177A works in both modes.</span></p>
+
+<hr />
+
+<h2 id="speaker-notes">Speaker Notes</h2>
+
+<p>Press <strong>S</strong> to open the speaker view.</p>
+
+<aside class="notes">
+  Speaker notes go inside an aside.notes element.
+  They appear only in the S-key speaker window, not on the main display.
+</aside>
+
+<hr />
+
+<h2 id="thank-you">Thank you</h2>
+
+<p>→ <a href="https://loomcollective.github.io">loomcollective.github.io</a></p>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js" crossorigin></script>
+
+  <script>
+    // Split rendered HTML on <hr> (kramdown renders `---` as <hr>) into slides
+    (function () {
+      var raw = document.getElementById('slides-raw');
+      var container = document.getElementById('slides-container');
+      var chunks = raw.innerHTML.split(/<hr\s*\/?>/i)
+        .map(function (s) { return s.trim(); })
+        .filter(Boolean);
+      container.innerHTML = chunks
+        .map(function (c) { return '<section>' + c + '</section>'; })
+        .join('');
+    })();
+
+    // Dark mode: swap to black theme if dark, then init Reveal
+    (function () {
+      if (document.documentElement.dataset.theme === 'dark') {
+        document.getElementById('reveal-theme-base').href =
+          'https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css';
+      }
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        slideNumber: 'c/t',
+        center: false,
+        transition: 'fade',
+        transitionSpeed: 'fast',
+        plugins: [ RevealHighlight, RevealNotes ],
+      });
+    })();
+  </script>
+
+</body>
+</html>
