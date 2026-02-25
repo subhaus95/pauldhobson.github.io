@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documenting Fieldwork: Photos, Video, and Embedded Media — Loom</title>
+<meta name="description" content="A practical guide to embedding rich media in Loom posts — photo galleries with lightbox, native video, YouTube and Vimeo embeds, and how to use callout blocks effectively.">
+
+<!-- Dark mode flash prevention — runs synchronously before first paint -->
+<script>
+  (function () {
+    var s = localStorage.getItem('loom-dark');
+    var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+
+<!-- Preconnect to CDN domains used by the viz runtime -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://esm.sh">
+<link rel="preconnect" href="https://api.mapbox.com">
+<link rel="preconnect" href="https://events.mapbox.com">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<!-- Theme stylesheet (Vite build output) -->
+<link rel="stylesheet" href="/assets/built/main.css">
+
+
+
+<!-- Syntax highlighting (Rouge — light + dark) -->
+<link rel="stylesheet" href="/assets/css/syntax.css">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Documenting Fieldwork: Photos, Video, and Embedded Media | Loom</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Documenting Fieldwork: Photos, Video, and Embedded Media" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="A practical guide to embedding rich media in Loom posts — photo galleries with lightbox, native video, YouTube and Vimeo embeds, and how to use callout blocks effectively." />
+<meta property="og:description" content="A practical guide to embedding rich media in Loom posts — photo galleries with lightbox, native video, YouTube and Vimeo embeds, and how to use callout blocks effectively." />
+<link rel="canonical" href="/documenting-fieldwork-media-and-embeds/" />
+<meta property="og:url" content="/documenting-fieldwork-media-and-embeds/" />
+<meta property="og:site_name" content="Loom" />
+<meta property="og:image" content="/assets/images/matterhorn.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-05T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/matterhorn.jpg" />
+<meta property="twitter:title" content="Documenting Fieldwork: Photos, Video, and Embedded Media" />
+<meta name="twitter:site" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-02-25T09:22:33-07:00","datePublished":"2026-03-05T00:00:00-07:00","description":"A practical guide to embedding rich media in Loom posts — photo galleries with lightbox, native video, YouTube and Vimeo embeds, and how to use callout blocks effectively.","headline":"Documenting Fieldwork: Photos, Video, and Embedded Media","image":"/assets/images/matterhorn.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/documenting-fieldwork-media-and-embeds/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/loom_collective.jpg"}},"url":"/documenting-fieldwork-media-and-embeds/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+</head>
+<body class="
+  post-template
+   tag-meta
+  
+  
+  
+  
+  
+  
+  
+">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="nav" x-data="{ open: false }">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="32" height="32">
+      Loom<span>.</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      
+      <li>
+        <a href="/">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/">Archive</a>
+      </li>
+      
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+
+      <!-- Search button -->
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Search (⌘K)"
+        title="Search (⌘K)"
+        @click="$dispatch('search:open')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- Dark mode toggle -->
+      <button
+        class="theme-toggle"
+        x-data="darkMode"
+        x-init="init()"
+        @click="toggle()"
+        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        type="button"
+      >
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="mobile-nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open"
+        :aria-label="open ? 'Close menu' : 'Open menu'"
+        type="button"
+      >
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div><!-- /.nav-actions -->
+  </div><!-- /.nav-inner -->
+
+  <!-- Mobile drawer -->
+  <div
+    class="mobile-nav"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-1"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-1"
+    @click.outside="open = false"
+    @keydown.escape.window="open = false"
+  >
+    <ul role="list">
+      
+      <li>
+        <a href="/" @click="open = false">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/" @click="open = false">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/" @click="open = false">Archive</a>
+      </li>
+      
+    </ul>
+  </div><!-- /.mobile-nav -->
+
+</header>
+
+
+<div id="main-content">
+  <main class="post-main">
+<article>
+
+  <!-- POST HEADER -->
+  <header class="post-header">
+    <div class="post-header-inner">
+
+      
+      <a href="/topic/meta/" class="post-tag">meta</a>
+      
+
+      <h1 class="post-title">Documenting Fieldwork: Photos, Video, and Embedded Media</h1>
+
+      
+      <p class="post-excerpt">A practical guide to embedding rich media in Loom posts — photo galleries with lightbox, native video, YouTube and Vimeo embeds, and how to use callout blocks effectively.</p>
+      
+
+      <div class="post-meta">
+        <span class="post-meta-author" style="display:flex;align-items:center;gap:8px;">
+          
+          
+          
+          <div class="post-meta-avatar post-meta-avatar--placeholder" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+          </div>
+          
+          <span class="post-meta-name">
+
+
+
+
+
+
+
+
+  
+  
+    
+<a href="/author/paul-hobson/" class="author-link">Paul Hobson</a>
+    
+  
+  <span class="author-sep">, </span>
+
+  
+  
+    
+<a href="/author/sophie-marchand/" class="author-link">Sophie Marchand</a>
+    
+  
+  
+
+</span>
+        </span>
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <time class="post-meta-date" datetime="2026-03-05">
+          5 Mar 2026
+        </time>
+        
+        
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <span class="post-meta-updated">Updated <time datetime="2026-02-25">25 Feb 2026</time></span>
+        
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <span class="post-meta-reading-time">9 min read</span>
+      </div>
+
+    </div><!-- /.post-header-inner -->
+  </header>
+
+  <!-- SERIES NAV -->
+  
+
+
+<nav class="series-nav" aria-label="Series: Building Loom">
+  <div class="series-nav-header">
+    <span class="series-nav-label">Series</span>
+    <span class="series-nav-title">Building Loom</span>
+  </div>
+  <ol class="series-nav-list">
+    
+    <li class="series-nav-item">
+      
+      <a href="/welcome-to-loom/" class="series-nav-link">
+        <span class="series-nav-number">1</span>
+        What Loom Is and How It Works
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/rendering-mathematics-and-diagrams/" class="series-nav-link">
+        <span class="series-nav-number">2</span>
+        Rendering Mathematics and Diagrams
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/interactive-charts-echarts-and-d3/" class="series-nav-link">
+        <span class="series-nav-number">3</span>
+        Interactive Charts with ECharts and D3
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/scrollytelling-with-maps-and-charts/" class="series-nav-link">
+        <span class="series-nav-number">4</span>
+        Scrollytelling with Maps and Charts
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/mapbox-gl-interactive-maps/" class="series-nav-link">
+        <span class="series-nav-number">5</span>
+        Interactive Maps with Mapbox GL JS
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item series-nav-item--current">
+      
+      <span class="series-nav-link series-nav-link--current" aria-current="page">
+        <span class="series-nav-number">6</span>
+        Documenting Fieldwork: Photos, Video, and Embedded Media
+      </span>
+      
+    </li>
+    
+  </ol>
+</nav>
+
+
+
+
+  <!-- FEATURE IMAGE -->
+  
+  <figure class="post-feature-image">
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="Matterhorn and surrounding glaciers from Gornergrat"
+      loading="eager"
+    >
+    
+    <figcaption>The Matterhorn from Gornergrat station, with the Gorner Glacier below. Photo: Paul Hobson</figcaption>
+    
+  </figure>
+  
+
+  <!-- POST CONTENT -->
+  <div class="post-content-wrap">
+    <section class="gh-content">
+      <p>Field science generates a lot of media: photographs from the ablation zone, video of calving events, timelapse sequences, and drone footage. This post documents how to embed all of it in a Loom post, and covers the four callout block types along the way.</p>
+
+<h2 id="photo-galleries">Photo galleries</h2>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">gallery</code> include with an array of images in front matter. Each image takes a <code class="language-plaintext highlighter-rouge">src</code> path, an <code class="language-plaintext highlighter-rouge">alt</code> description (required for accessibility), and an optional <code class="language-plaintext highlighter-rouge">caption</code> shown in the lightbox.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">gallery</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">src</span><span class="pi">:</span> <span class="s">/assets/images/matterhorn.jpg</span>
+    <span class="na">alt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Matterhorn</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Gornergrat"</span>
+    <span class="na">caption</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Gornergrat,</span><span class="nv"> </span><span class="s">3089</span><span class="nv"> </span><span class="s">m.</span><span class="nv"> </span><span class="s">September</span><span class="nv"> </span><span class="s">2019."</span>
+  <span class="pi">-</span> <span class="na">src</span><span class="pi">:</span> <span class="s">/assets/images/matterhorn.jpg</span>
+    <span class="na">alt</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Gorner</span><span class="nv"> </span><span class="s">Glacier</span><span class="nv"> </span><span class="s">confluence"</span>
+    <span class="na">caption</span><span class="pi">:</span> <span class="s2">"</span><span class="s">The</span><span class="nv"> </span><span class="s">confluence</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Gorner</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Grenzgletscher."</span>
+</code></pre></div></div>
+
+<p>Then in the post body:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>gallery.html<span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<p>The result is a three-column responsive grid. Click any image to open the lightbox. Navigate with the arrow keys or on-screen buttons; close with <code class="language-plaintext highlighter-rouge">Esc</code>.</p>
+
+<div
+  class="gallery"
+  x-data="gallery()"
+  x-init='images = [{"src":"/assets/images/matterhorn.jpg","alt":"Matterhorn from Gornergrat, 3089 m","caption":"Matterhorn from Gornergrat station. The Gorner Glacier fills the valley below."},{"src":"/assets/images/matterhorn.jpg","alt":"Gorner Glacier confluence zone","caption":"Confluence of the Gorner and Grenzgletscher, showing medial moraine."},{"src":"/assets/images/matterhorn.jpg","alt":"Ablation zone surface detail","caption":"Surface channels and cryoconite holes in the ablation zone."},{"src":"/assets/images/matterhorn.jpg","alt":"Terminal moraine and proglacial lake","caption":"The proglacial lake at the Gorner terminus, expanding since the 1980s."}]'
+>
+
+  <!-- Grid -->
+  
+  <button
+    class="gallery-item"
+    @click="show(0)"
+    aria-label="View photo : Matterhorn from Gornergrat, 3089 m"
+    type="button"
+  >
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="Matterhorn from Gornergrat, 3089 m"
+      loading="lazy"
+    >
+  </button>
+  
+  <button
+    class="gallery-item"
+    @click="show(1)"
+    aria-label="View photo : Gorner Glacier confluence zone"
+    type="button"
+  >
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="Gorner Glacier confluence zone"
+      loading="lazy"
+    >
+  </button>
+  
+  <button
+    class="gallery-item"
+    @click="show(2)"
+    aria-label="View photo : Ablation zone surface detail"
+    type="button"
+  >
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="Ablation zone surface detail"
+      loading="lazy"
+    >
+  </button>
+  
+  <button
+    class="gallery-item"
+    @click="show(3)"
+    aria-label="View photo : Terminal moraine and proglacial lake"
+    type="button"
+  >
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="Terminal moraine and proglacial lake"
+      loading="lazy"
+    >
+  </button>
+  
+
+  <!-- Lightbox -->
+  <div
+    class="gallery-lightbox"
+    x-show="active"
+    x-transition:enter="gallery-lb-enter"
+    x-transition:enter-start="gallery-lb-enter-start"
+    x-transition:enter-end="gallery-lb-enter-end"
+    x-transition:leave="gallery-lb-leave"
+    x-transition:leave-start="gallery-lb-leave-start"
+    x-transition:leave-end="gallery-lb-leave-end"
+    @click.self="hide()"
+    role="dialog"
+    aria-modal="true"
+    :aria-label="images[idx]?.alt || 'Photo lightbox'"
+    style="display:none;"
+  >
+    <button class="gallery-lb-close" @click="hide()" aria-label="Close" x-ref="close" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
+    <button class="gallery-lb-nav gallery-lb-prev" @click="prev()" x-show="idx > 0" aria-label="Previous photo" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </button>
+
+    <figure class="gallery-lb-figure">
+      <img loading="lazy"
+        class="gallery-lb-img"
+        :src="images[idx]?.src"
+        :alt="images[idx]?.alt || ''"
+      >
+      <figcaption
+        class="gallery-lb-caption"
+        x-show="images[idx]?.caption"
+        x-text="images[idx]?.caption"
+      ></figcaption>
+    </figure>
+
+    <button class="gallery-lb-nav gallery-lb-next" @click="next()" x-show="idx < images.length - 1" aria-label="Next photo" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </button>
+
+    <div class="gallery-lb-counter" aria-live="polite">
+      <span x-text="idx + 1"></span> / <span x-text="images.length"></span>
+    </div>
+
+  </div><!-- /.gallery-lightbox -->
+
+</div><!-- /.gallery -->
+
+<div class="callout callout-note">
+  <span class="callout-icon">💡</span>
+  <div class="callout-body">
+    <p><strong>Image sizing:</strong> Thumbnails are cropped to a 4:3 aspect ratio using <code>object-fit: cover</code>. The lightbox shows images at their natural size, constrained to the viewport. A good target is 1600 × 1200 px for lightbox quality.</p>
+  </div>
+</div>
+
+<h2 id="photo-carousels">Photo carousels</h2>
+
+<p>When you want to show a sequence of images one at a time rather than a grid, use the <code class="language-plaintext highlighter-rouge">carousel</code> include. The format is identical to the gallery.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>carousel.html<span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<p>Or pass an explicit array:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>carousel.html<span class="w"> </span><span class="na">images</span><span class="o">=</span><span class="nv">page</span><span class="p">.</span><span class="nv">demo_carousel</span><span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<div
+  class="carousel"
+  x-data="carousel()"
+  x-init='images = [{"src":"/assets/images/matterhorn.jpg","alt":"Matterhorn from Gornergrat, 3089 m","caption":"Matterhorn from Gornergrat station. The Gorner Glacier fills the valley below."},{"src":"/assets/images/matterhorn.jpg","alt":"Gorner Glacier confluence zone","caption":"Confluence of the Gorner and Grenzgletscher, showing medial moraine."},{"src":"/assets/images/matterhorn.jpg","alt":"Ablation zone surface detail","caption":"Surface channels and cryoconite holes in the ablation zone."},{"src":"/assets/images/matterhorn.jpg","alt":"Terminal moraine and proglacial lake","caption":"The proglacial lake at the Gorner terminus, expanding since the 1980s."}]'
+>
+
+  <div class="carousel-viewport">
+    <div
+      class="carousel-track"
+      :style="'transform: translateX(-' + (idx * 100) + '%)'"
+    >
+      
+      <div class="carousel-slide">
+        <img
+          src="/assets/images/matterhorn.jpg"
+          alt="Matterhorn from Gornergrat, 3089 m"
+          loading="eager"
+        >
+        
+        <p class="carousel-caption">Matterhorn from Gornergrat station. The Gorner Glacier fills the valley below.</p>
+        
+      </div>
+      
+      <div class="carousel-slide">
+        <img
+          src="/assets/images/matterhorn.jpg"
+          alt="Gorner Glacier confluence zone"
+          loading="lazy"
+        >
+        
+        <p class="carousel-caption">Confluence of the Gorner and Grenzgletscher, showing medial moraine.</p>
+        
+      </div>
+      
+      <div class="carousel-slide">
+        <img
+          src="/assets/images/matterhorn.jpg"
+          alt="Ablation zone surface detail"
+          loading="lazy"
+        >
+        
+        <p class="carousel-caption">Surface channels and cryoconite holes in the ablation zone.</p>
+        
+      </div>
+      
+      <div class="carousel-slide">
+        <img
+          src="/assets/images/matterhorn.jpg"
+          alt="Terminal moraine and proglacial lake"
+          loading="lazy"
+        >
+        
+        <p class="carousel-caption">The proglacial lake at the Gorner terminus, expanding since the 1980s.</p>
+        
+      </div>
+      
+    </div>
+  </div>
+
+  
+
+  <button
+    class="carousel-btn carousel-btn-prev"
+    @click="prev()"
+    x-show="idx > 0"
+    aria-label="Previous image"
+    type="button"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+
+  <button
+    class="carousel-btn carousel-btn-next"
+    @click="next()"
+    x-show="idx < images.length - 1"
+    aria-label="Next image"
+    type="button"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+
+  <div class="carousel-dots" role="tablist" aria-label="Carousel navigation">
+    
+    <button
+      class="carousel-dot"
+      :class="idx === 0 ? 'carousel-dot-active' : ''"
+      @click="goTo(0)"
+      role="tab"
+      :aria-selected="idx === 0"
+      :aria-label="'Image ' + 1 + ' of ' + images.length"
+      type="button"
+    ></button>
+    
+    <button
+      class="carousel-dot"
+      :class="idx === 1 ? 'carousel-dot-active' : ''"
+      @click="goTo(1)"
+      role="tab"
+      :aria-selected="idx === 1"
+      :aria-label="'Image ' + 2 + ' of ' + images.length"
+      type="button"
+    ></button>
+    
+    <button
+      class="carousel-dot"
+      :class="idx === 2 ? 'carousel-dot-active' : ''"
+      @click="goTo(2)"
+      role="tab"
+      :aria-selected="idx === 2"
+      :aria-label="'Image ' + 3 + ' of ' + images.length"
+      type="button"
+    ></button>
+    
+    <button
+      class="carousel-dot"
+      :class="idx === 3 ? 'carousel-dot-active' : ''"
+      @click="goTo(3)"
+      role="tab"
+      :aria-selected="idx === 3"
+      :aria-label="'Image ' + 4 + ' of ' + images.length"
+      type="button"
+    ></button>
+    
+  </div>
+
+  
+
+</div>
+
+<p>Navigate with the on-screen prev/next buttons or the dot indicators below the image. The carousel does not open a lightbox — it is designed for curated sequential storytelling rather than a browsable collection. Use a gallery when readers need to scan all images at once; use a carousel when order and pacing matter.</p>
+
+<h2 id="native-video">Native video</h2>
+
+<p>Self-hosted video files use the <code class="language-plaintext highlighter-rouge">video</code> include. The player is a styled native HTML5 <code class="language-plaintext highlighter-rouge">&lt;video&gt;</code> element — no third-party player required.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>video.html<span class="w">
+   </span><span class="na">src</span><span class="o">=</span><span class="s2">"/assets/video/gorner-timelapse.mp4"</span><span class="w">
+   </span><span class="na">poster</span><span class="o">=</span><span class="s2">"/assets/images/gorner-poster.jpg"</span><span class="w">
+   </span><span class="na">caption</span><span class="o">=</span><span class="s2">"Gorner Glacier timelapse, summer 2019. 48 frames over 6 weeks."</span><span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<div class="callout callout-warning">
+  <span class="callout-icon">⚠️</span>
+  <div class="callout-body">
+    <p><strong>File size:</strong> Video files can be large. Compress to H.264 at 1080p before committing. A 60-second timelapse should compress to under 10 MB. For longer videos, use YouTube or Vimeo instead and embed with the <code>embed</code> include below.</p>
+  </div>
+</div>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src</code></td>
+      <td>Yes</td>
+      <td>Path to the <code class="language-plaintext highlighter-rouge">.mp4</code> file</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">poster</code></td>
+      <td>No</td>
+      <td>Thumbnail shown before playback</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">caption</code></td>
+      <td>No</td>
+      <td>Caption below the player</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">loop</code></td>
+      <td>No</td>
+      <td>Repeat continuously (<code class="language-plaintext highlighter-rouge">loop="true"</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">autoplay</code></td>
+      <td>No</td>
+      <td>Start immediately — forces mute</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="youtube-and-vimeo-embeds">YouTube and Vimeo embeds</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">embed</code> include wraps any YouTube or Vimeo URL in a responsive 16:9 container. YouTube URLs are automatically rewritten to <code class="language-plaintext highlighter-rouge">youtube-nocookie.com</code>.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>embed.html<span class="w">
+   </span><span class="na">url</span><span class="o">=</span><span class="s2">"https://www.youtube.com/embed/x1SgmFa0r04?si=mCkXoLDafmHUzAMk"</span><span class="w">
+   </span><span class="na">caption</span><span class="o">=</span><span class="s2">"NASA Scientific Visualization: a year of Earth's CO₂ flux."</span><span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<div class="video-embed">
+  <div class="video-embed-wrap">
+    <iframe src="https://www.youtube-nocookie.com/embed/https://www.youtube.com/embed/x1SgmFa0r04" title="Video embed" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+  <p class="video-caption">NASA Scientific Visualization Studio: a year of Earth's CO₂ flux. Public domain.</p>
+</div>
+
+<p>Vimeo works identically:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>embed.html<span class="w"> </span><span class="na">url</span><span class="o">=</span><span class="s2">"https://vimeo.com/123456789"</span><span class="w"> </span><span class="na">caption</span><span class="o">=</span><span class="s2">"Caption"</span><span class="w"> </span><span class="cp">%}</span>
+</code></pre></div></div>
+
+<div class="callout callout-definition">
+  <span class="callout-icon">📖</span>
+  <div class="callout-body">
+    <p><strong>Privacy mode:</strong> YouTube embeds use <code>youtube-nocookie.com</code> rather than <code>youtube.com</code>. No cookies are set on the visitor's browser until they press play — an important distinction under ePrivacy rules.</p>
+  </div>
+</div>
+
+<h2 id="callout-blocks">Callout blocks</h2>
+
+<p>Loom has four callout variants for drawing attention to different types of information.</p>
+
+<p><strong>Note</strong> — tips, clarifications, supplementary context:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout callout-note"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>💡<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-body"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Your note content here.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Warning</strong> — things that can go wrong, caveats, destructive actions:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout callout-warning"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>⚠️<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-body"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Your warning content here.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Definition</strong> — terminology, acronyms, key concepts:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout callout-definition"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>📖<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-body"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;&lt;strong&gt;</span>Term:<span class="nt">&lt;/strong&gt;</span> Definition text.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Takeaway</strong> — the key point to remember from a section:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout callout-takeaway"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"callout-icon"</span><span class="nt">&gt;</span>✓<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"callout-body"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;p&gt;</span>The key takeaway from this section.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="callout callout-takeaway">
+  <span class="callout-icon">✓</span>
+  <div class="callout-body">
+    <p>For images and short clips: use the gallery and video includes, self-hosted. For longer video: use YouTube or Vimeo with the embed include. Callout blocks are raw HTML — paste the snippet and fill in the content.</p>
+  </div>
+</div>
+
+<h2 id="co-authorship">Co-authorship</h2>
+
+<p>This post is co-authored, which demonstrates the multi-author system. In front matter, pass an array of author slugs:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">author</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">paul-hobson</span><span class="pi">,</span> <span class="nv">sophie-marchand</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<p>Both names render as links in the byline and author card. Each author’s profile page at <code class="language-plaintext highlighter-rouge">/author/their-slug/</code> will include this post in their listing. Author data lives in <code class="language-plaintext highlighter-rouge">_data/authors.yml</code>.</p>
+
+    </section>
+  </div><!-- /.post-content-wrap -->
+
+  
+
+
+
+
+  <!-- subscribe-cta.html — RSS/newsletter call to action, shown at end of posts -->
+<aside class="subscribe-cta" aria-label="Subscribe">
+  <div class="subscribe-cta-inner">
+    <div class="subscribe-cta-text">
+      <strong class="subscribe-cta-heading">Enjoyed this?</strong>
+      <p class="subscribe-cta-body">New essays on computational thinking, environmental modelling, and the mathematics of complex systems.</p>
+    </div>
+    <a href="/feed.xml" class="subscribe-cta-btn" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+      </svg>
+      Subscribe via RSS
+    </a>
+  </div>
+</aside>
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<aside class="related-posts" aria-label="Related articles">
+  <h2 class="related-posts-heading">Related</h2>
+  <div class="related-posts-grid">
+    
+    <a href="/welcome-to-loom/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">What Loom Is and How It Works</h3>
+        <time class="related-post-date" datetime="2026-02-24">24 Feb 2026</time>
+      </div>
+    </a>
+    
+    <a href="/scrollytelling-with-maps-and-charts/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Scrollytelling with Maps and Charts</h3>
+        <time class="related-post-date" datetime="2026-02-27">27 Feb 2026</time>
+      </div>
+    </a>
+    
+    <a href="/sample-presentation/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Introducing Loom</h3>
+        <time class="related-post-date" datetime="2026-02-28">28 Feb 2026</time>
+      </div>
+    </a>
+    
+  </div>
+</aside>
+
+
+
+  <!-- POST FOOTER — tags + share -->
+  <footer class="post-footer">
+    <div class="post-footer-inner">
+
+      
+      <div class="post-tags">
+        
+        <a href="/tag/fieldwork/" class="post-tag-chip">fieldwork</a>
+        
+        <a href="/tag/photography/" class="post-tag-chip">photography</a>
+        
+        <a href="/tag/media/" class="post-tag-chip">media</a>
+        
+        <a href="/tag/jekyll/" class="post-tag-chip">jekyll</a>
+        
+        <a href="/tag/design/" class="post-tag-chip">design</a>
+        
+      </div>
+      
+
+      <div class="post-share">
+        <span class="post-share-label">Share</span>
+
+        <a
+          href="https://twitter.com/intent/tweet?text=Documenting+Fieldwork%3A+Photos%2C+Video%2C+and+Embedded+Media&url=/documenting-fieldwork-media-and-embeds/"
+          class="share-btn share-btn--twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on X / Twitter"
+          title="Share on X"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/shareArticle?mini=true&url=/documenting-fieldwork-media-and-embeds/&title=Documenting+Fieldwork%3A+Photos%2C+Video%2C+and+Embedded+Media"
+          class="share-btn share-btn--linkedin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on LinkedIn"
+          title="Share on LinkedIn"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+
+        <!-- Copy link -->
+        <button
+          class="share-btn share-btn--copy"
+          x-data="{ copied: false }"
+          @click="navigator.clipboard.writeText('/documenting-fieldwork-media-and-embeds/'); copied = true; setTimeout(() => copied = false, 2000)"
+          :aria-label="copied ? 'Copied!' : 'Copy link'"
+          :title="copied ? 'Copied!' : 'Copy link'"
+          type="button"
+        >
+          <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg x-show="copied" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+
+    </div><!-- /.post-footer-inner -->
+  </footer>
+
+</article>
+
+  <!-- POST NAVIGATION -->
+  
+  <nav class="post-nav" aria-label="Post navigation">
+    <div class="post-nav-inner">
+
+      
+      <a href="/glaciers-field-sites/" class="post-nav-item post-nav-item--prev">
+        <span class="post-nav-direction">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Previous
+        </span>
+        <span class="post-nav-title">Glaciers I Have Known</span>
+      </a>
+      
+
+      
+
+    </div>
+  </nav>
+  
+
+</main>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+
+    <!-- Col 1: Brand -->
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="28" height="28">
+        Loom<span>.</span>
+      </div>
+      
+      <p class="footer-brand-desc">Jekyll theme. Clean typography, dark mode, computational essays.</p>
+      
+
+      <div class="footer-social">
+        
+        
+        <a href="/feed.xml" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Topics -->
+    <nav aria-labelledby="footer-topics">
+      <h3 class="footer-col-title" id="footer-topics">Topics</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/topic/ecology/">ecology</a></li>
+        
+        <li><a href="/topic/meta/">meta</a></li>
+        
+        <li><a href="/topic/science/">science</a></li>
+        
+      </ul>
+    </nav>
+
+    <!-- Col 3: Secondary navigation -->
+    
+    <nav aria-labelledby="footer-company">
+      <h3 class="footer-col-title" id="footer-company">Company</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/feed.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+    
+
+    <!-- Col 4: Resources -->
+    <nav aria-labelledby="footer-resources">
+      <h3 class="footer-col-title" id="footer-resources">Resources</h3>
+      <ul class="footer-links">
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/feed.xml">RSS Feed</a></li>
+        <li><a href="/topics/">All Topics</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.footer-inner -->
+
+  <div class="footer-bottom">
+    <span class="footer-copy">
+      &copy; 2026 Loom.
+    </span>
+    <div class="footer-legal">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- Alpine.js bundle -->
+<script type="module" src="/assets/built/main.js"></script>
+
+<!-- Visualization runtime — detects and loads CDN libraries dynamically -->
+<script type="module" src="/assets/js/core.js"></script>
+
+<!-- Search overlay — event-driven: nav button $dispatches 'search:open' -->
+<div
+  x-data="search"
+  x-init="init()"
+  @search:open.window="open()"
+>
+  <div
+    class="search-overlay"
+    x-show="isOpen"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click.self="close()"
+    style="display: none;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+  >
+    <div class="search-panel">
+      <div class="search-input-wrap">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search posts…"
+          x-model="query"
+          x-ref="input"
+          @input.debounce.300ms="runSearch()"
+          @keydown.escape="close()"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search query"
+        >
+        <kbd class="search-esc" aria-hidden="true">ESC</kbd>
+      </div>
+
+      <div class="search-results" x-show="query.trim().length > 0">
+        <div class="search-status" x-show="loading" aria-live="polite">Searching…</div>
+        <div class="search-status" x-show="!loading && results.length === 0" aria-live="polite">
+          No results for "<span x-text="query"></span>"
+        </div>
+        <ul class="search-result-list" x-show="!loading && results.length > 0" role="list">
+          <template x-for="result in results" :key="result.url">
+            <li>
+              <a :href="result.url" class="search-result-item" @click="close()">
+                <div class="search-result-title" x-text="result.meta?.title || result.url"></div>
+                <div class="search-result-excerpt" x-html="result.excerpt"></div>
+              </a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

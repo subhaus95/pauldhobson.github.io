@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glaciers I Have Known — Loom</title>
+<meta name="description" content="A scroll-driven terrain tour of five glacier field sites across the Swiss Alps and Canadian Rockies — Findelen, Gorner, Mer de Glace, Peyto, and the Columbia Icefield.">
+
+<!-- Dark mode flash prevention — runs synchronously before first paint -->
+<script>
+  (function () {
+    var s = localStorage.getItem('loom-dark');
+    var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+
+<!-- Preconnect to CDN domains used by the viz runtime -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://esm.sh">
+<link rel="preconnect" href="https://api.mapbox.com">
+<link rel="preconnect" href="https://events.mapbox.com">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<!-- Theme stylesheet (Vite build output) -->
+<link rel="stylesheet" href="/assets/built/main.css">
+
+
+
+<!-- Syntax highlighting (Rouge — light + dark) -->
+<link rel="stylesheet" href="/assets/css/syntax.css">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Glaciers I Have Known | Loom</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Glaciers I Have Known" />
+<meta name="author" content="Paul Hobson" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="A scroll-driven terrain tour of five glacier field sites across the Swiss Alps and Canadian Rockies — Findelen, Gorner, Mer de Glace, Peyto, and the Columbia Icefield." />
+<meta property="og:description" content="A scroll-driven terrain tour of five glacier field sites across the Swiss Alps and Canadian Rockies — Findelen, Gorner, Mer de Glace, Peyto, and the Columbia Icefield." />
+<link rel="canonical" href="/glaciers-field-sites/" />
+<meta property="og:url" content="/glaciers-field-sites/" />
+<meta property="og:site_name" content="Loom" />
+<meta property="og:image" content="/assets/images/matterhorn.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-03-02T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/matterhorn.jpg" />
+<meta property="twitter:title" content="Glaciers I Have Known" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-24T23:53:49-07:00","datePublished":"2026-03-02T00:00:00-07:00","description":"A scroll-driven terrain tour of five glacier field sites across the Swiss Alps and Canadian Rockies — Findelen, Gorner, Mer de Glace, Peyto, and the Columbia Icefield.","headline":"Glaciers I Have Known","image":"/assets/images/matterhorn.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"/glaciers-field-sites/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/loom_collective.jpg"},"name":"Paul Hobson"},"url":"/glaciers-field-sites/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+</head>
+<body class="
+  essay-template
+   tag-science
+  
+  
+  
+   tag-hash-geo
+  
+  
+   tag-hash-story
+">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="nav" x-data="{ open: false }">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="32" height="32">
+      Loom<span>.</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      
+      <li>
+        <a href="/">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/">Archive</a>
+      </li>
+      
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+
+      <!-- Search button -->
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Search (⌘K)"
+        title="Search (⌘K)"
+        @click="$dispatch('search:open')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- Dark mode toggle -->
+      <button
+        class="theme-toggle"
+        x-data="darkMode"
+        x-init="init()"
+        @click="toggle()"
+        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        type="button"
+      >
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="mobile-nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open"
+        :aria-label="open ? 'Close menu' : 'Open menu'"
+        type="button"
+      >
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div><!-- /.nav-actions -->
+  </div><!-- /.nav-inner -->
+
+  <!-- Mobile drawer -->
+  <div
+    class="mobile-nav"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-1"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-1"
+    @click.outside="open = false"
+    @keydown.escape.window="open = false"
+  >
+    <ul role="list">
+      
+      <li>
+        <a href="/" @click="open = false">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/" @click="open = false">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/" @click="open = false">Archive</a>
+      </li>
+      
+    </ul>
+  </div><!-- /.mobile-nav -->
+
+</header>
+
+
+<div id="main-content">
+  <!-- Essay stylesheet and runtime — self-contained -->
+<link rel="stylesheet" href="/assets/css/essay.css">
+<script type="module" src="/assets/js/essay/core.js"></script>
+
+<div class="essay-layout" id="essay-layout">
+
+  <!-- essay-toc.html — Sticky table of contents (left column).
+     The <ol> is empty on load; assets/js/essay/core.js populates it
+     from h2/h3 elements found in #essay-content after the page renders. -->
+
+<nav class="essay-toc" id="essay-toc" aria-label="Table of contents">
+  <div class="essay-toc-inner">
+    <p class="essay-toc-heading" aria-hidden="true">Contents</p>
+    <ol class="essay-toc-list" id="essay-toc-list">
+      <!-- Populated at runtime by assets/js/essay/core.js buildToc() -->
+    </ol>
+  </div>
+</nav>
+
+
+  <main class="essay-main" id="essay-main" role="main">
+    <article class="essay-article">
+
+      <!-- essay-hero.html — Header for computational essay template.
+     Displays feature image, tag label, title, excerpt, and post metadata. -->
+
+<header class="essay-hero">
+  
+  <figure class="essay-hero-figure">
+    <img
+      src="/assets/images/matterhorn.jpg"
+      alt="The Matterhorn viewed from Findelen Glacier"
+      class="essay-hero-img"
+      loading="eager"
+    >
+    
+  </figure>
+  
+
+  <div class="essay-hero-body">
+    
+    <a href="/topic/science/" class="essay-tag-label">science</a>
+    
+
+    <h1 class="essay-title">Glaciers I Have Known</h1>
+
+    
+    <p class="essay-excerpt">A scroll-driven terrain tour of five glacier field sites across the Swiss Alps and Canadian Rockies — Findelen, Gorner, Mer de Glace, Peyto, and the Columbia Icefield.</p>
+    
+
+    <div class="essay-meta">
+      <div class="essay-authors">
+        <span class="essay-author">
+          
+          
+
+
+
+
+
+
+
+
+  
+  
+    
+<a href="/author/paul-hobson/" class="author-link">Paul Hobson</a>
+    
+  
+  
+
+
+        </span>
+      </div>
+      <div class="essay-meta-secondary">
+        <time class="essay-date" datetime="2026-03-02">2 Mar 2026</time>
+        
+        
+        <span class="essay-sep" aria-hidden="true">·</span>
+        <span class="essay-updated">Updated <time datetime="2026-02-24">24 Feb 2026</time></span>
+        
+        <span class="essay-sep" aria-hidden="true">·</span>
+        <span class="essay-reading-time">9 min read</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      
+
+
+      <div class="essay-content gh-content" id="essay-content">
+        <p>These are places I have walked on, drilled into, and watched retreat. Findelen and Gornergletscher above Zermatt. Mer de Glace above Chamonix. Peyto Glacier and the Columbia Icefield in the Canadian Rockies. Each one is a different chapter of the same story: the post-industrial drawdown of ice that had been accumulating since the Little Ice Age maximum of roughly 1850.</p>
+
+<p>The maps below use Mapbox GL terrain — actual elevation data rendered in 3D — with satellite imagery to show current ice extent. The white you see is real. What is not white used to be.</p>
+
+<hr />
+
+<h2 id="the-swiss-alps-two-glaciers-above-zermatt">The Swiss Alps: two glaciers above Zermatt</h2>
+
+<p>The valley above Zermatt holds two of the most studied glacier systems in the Alps, separated by the ridge of the Rothorn. Both drain the Monte Rosa massif, the largest glaciated area in the Alps outside the main ice divide.</p>
+
+<div data-map="custom" style="height:420px;" data-center="7.790,45.985" data-zoom="11" data-pitch="50" data-bearing="175" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p><em>The Zermatt valley from the south. Gornergletscher occupies the left fork; Findelen glacier drains the right. The Matterhorn (4478 m) is the pyramid at centre-left.</em></p>
+
+<hr />
+
+<h3 id="findelen-glacier">Findelen glacier</h3>
+
+<p>East of Zermatt, Findelen is fed from the Strahlhorn (4190 m), Rimpfischhorn (4198 m), and Adlerhorn (3988 m). It is a relatively simple valley glacier — elongated, well-defined, draining northwest into the Vispa system. ETH Zürich has maintained a mass balance programme here since the 1960s.</p>
+
+<div data-map="findelen" style="height:420px;" data-pitch="55" data-bearing="155" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p>The dark moraine ridges flanking the glacier record its Little Ice Age maximum. The terminus has retreated roughly 2 km up-valley since 1900 and currently sits at approximately 2580 m. At current retreat rates the glacier will lose contact with its accumulation zone before 2100.</p>
+
+<hr />
+
+<h3 id="gornergletscher">Gornergletscher</h3>
+
+<p>The Gorner system is the second largest glacier complex in the Alps by area — roughly 57 km² — comprising the Gornergletscher, Grenzgletscher, Monte Rosa Gletscher, and six tributary glaciers draining from the Monte Rosa massif (4634 m) and the Swiss-Italian border ridge.</p>
+
+<div data-map="gorner" style="height:420px;" data-pitch="55" data-bearing="185" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p>The glaciological signature of the Gorner is the annual formation and drainage of the Gornersee — a proglacial lake that forms each spring at the confluence of the Gorner and Grenz glaciers and drains catastrophically each June in a subglacial outburst flood (jökulhlaup). The drainage, which can release up to 10 million m³ in a few days, has been used to study subglacial hydrology and ice-bed coupling. It is becoming less reliable as the glacier thins and the ice dam that forms the lake margin weakens.</p>
+
+<hr />
+
+<h2 id="france-mer-de-glace">France: Mer de Glace</h2>
+
+<p>The Mer de Glace is the largest glacier in France: 40 km² and approximately 400 m thick at the Géant icefall, where ice from the Mont Blanc plateau cascades 1000 m into the main glacier tongue.</p>
+
+<div data-map="custom" style="height:420px;" data-center="6.930,45.885" data-zoom="13" data-pitch="58" data-bearing="135" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p>The Montenvers railway, opened in 1908, was one of Europe’s first glacier tourism enterprises. The station sits at 1913 m; a ladder system originally allowed visitors to walk down to the ice surface. That ladder has been extended nine times as the glacier surface has dropped more than 150 m since the railway opened. The current ladder system — visible in satellite imagery as a thin line on the exposed bedrock face — is more than 500 m long. It is a precise vertical record of loss.</p>
+
+<p>The ice visible here in satellite imagery will not be here in 2100 under any current emissions scenario.</p>
+
+<hr />
+
+<h2 id="canada-the-rockies">Canada: the Rockies</h2>
+
+<p>The Canadian Rocky Mountain glaciers are among the most accessible in the world and among the most intensively monitored. They are also retreating faster than their European counterparts in absolute area terms.</p>
+
+<h3 id="peyto-glacier">Peyto Glacier</h3>
+
+<p>Peyto drains the Wapta Icefield southward into Peyto Lake — famous for its turquoise colour, caused by glacial flour suspended in the meltwater. The glacier’s wolf-head silhouette from the Bow Summit viewpoint has made it one of the most-photographed glaciers in North America.</p>
+
+<div data-map="peyto" style="height:420px;" data-pitch="52" data-bearing="185" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p>Since systematic photography began in 1896, Peyto has retreated more than 2.5 km and lost approximately 70% of its volume. The lake it feeds has grown substantially as the terminus has withdrawn. At its current rate of volume loss, Peyto will be unrecognisable within a generation.</p>
+
+<h3 id="athabasca-glacier-and-the-columbia-icefield">Athabasca Glacier and the Columbia Icefield</h3>
+
+<p>The Columbia Icefield straddles the hydrological apex of the continent. Meltwater from the icefield drains to three oceans: to the Pacific via the Columbia River, to the Atlantic via the North Saskatchewan and Saskatchewan rivers, and to the Arctic via the Athabasca and Mackenzie rivers. It is one of very few places in North America with this property.</p>
+
+<div data-map="athabasca" style="height:420px;" data-pitch="50" data-bearing="210" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+
+<p>The Athabasca Glacier — the most accessible outlet of the Columbia Icefield — has retreated 1.5 km since 1844. Marker posts along the Icefields Parkway mark its historical terminus positions; driving past them is one of the more visceral ways to understand glacier retreat because the distance between posts is human-scaled. The most recent post (2021) is a 15-minute walk from the current terminus.</p>
+
+<hr />
+
+<h2 id="the-scroll-tour">The scroll tour</h2>
+
+<p>The map below connects all five sites in sequence. It uses Mapbox GL terrain with satellite imagery and a pitched camera — the same data you have been looking at above, but as a single continuous journey.</p>
+
+<section class="story-section">
+  <div class="story-sticky">
+    <div class="story-graphic">
+      <div data-map="world" id="glacier-tour" data-center="0,40" data-zoom="2" data-pitch="0" data-bearing="0" data-terrain="1.5" data-style="mapbox://styles/mapbox/satellite-streets-v12"></div>
+    </div>
+  </div>
+  <div class="story-steps">
+
+    <div class="story-step" data-step="0" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [0, 40], &quot;zoom&quot;: 2, &quot;pitch&quot;: 0, &quot;bearing&quot;: 0}}">
+      <p><strong>Two continents, five glaciers.</strong> The sites in this post span roughly 8,500 km — from the Monte Rosa massif in the central Alps to the Columbia Icefield in the Canadian Rockies. They share a climate signal, a measurement history, and a trajectory.</p>
+    </div>
+
+    <div class="story-step" data-step="1" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [7.790, 45.985], &quot;zoom&quot;: 11, &quot;pitch&quot;: 50, &quot;bearing&quot;: 175}}">
+      <p><strong>Zermatt, Switzerland.</strong> The valley above Zermatt holds two of the Alps' most studied glacier systems: Findelen to the east and Gornergletscher to the south. The Monte Rosa massif (4634 m) anchors the ice. Both glaciers have been in continuous retreat since the end of the Little Ice Age around 1860.</p>
+    </div>
+
+    <div class="story-step" data-step="2" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [7.840, 46.012], &quot;zoom&quot;: 13, &quot;pitch&quot;: 55, &quot;bearing&quot;: 155}}">
+      <p><strong>Findelen Glacier.</strong> Fed from three high peaks above 4000 m, Findelen is a textbook valley glacier — well-defined accumulation zone, clean equilibrium line, straightforward mass balance signal. The dark lateral moraines mark its Little Ice Age extent. It has retreated roughly 2 km since 1900.</p>
+    </div>
+
+    <div class="story-step" data-step="3" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [7.815, 45.972], &quot;zoom&quot;: 12, &quot;pitch&quot;: 55, &quot;bearing&quot;: 185}}">
+      <p><strong>Gornergletscher.</strong> The Gorner complex — 57 km², six tributary glaciers — is the dominant feature of the Monte Rosa drainage. Each June, the Gornersee (a 10-million m³ ice-dammed lake) drains in a subglacial flood lasting days. As the glacier thins, the ice dam is becoming structurally unreliable. The flood events are changing character.</p>
+    </div>
+
+    <div class="story-step" data-step="4" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [6.930, 45.885], &quot;zoom&quot;: 12, &quot;pitch&quot;: 55, &quot;bearing&quot;: 135}}">
+      <p><strong>Mer de Glace, Chamonix.</strong> The largest glacier in France, flowing northwest from the Géant icefall at the foot of the Mont Blanc plateau. The surface has dropped more than 150 m since the Montenvers railway opened in 1908. The ladder system to the ice has been extended nine times. The exposed grey bedrock you can see was under ice within living memory.</p>
+    </div>
+
+    <div class="story-step" data-step="5" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [-100, 55], &quot;zoom&quot;: 3, &quot;pitch&quot;: 0, &quot;bearing&quot;: 0}}">
+      <p><strong>Crossing the Atlantic.</strong> From the Alps to the Canadian Rockies — the same post-industrial warming signal playing out in a different mountain range, at a different scale. The Rockies glaciers are more continental, more seasonal, draining watersheds that supply drinking water to millions on the prairies.</p>
+    </div>
+
+    <div class="story-step" data-step="6" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [-116.520, 51.715], &quot;zoom&quot;: 12, &quot;pitch&quot;: 52, &quot;bearing&quot;: 185}}">
+      <p><strong>Peyto Glacier, Banff.</strong> The Wapta Icefield drains south into Peyto Lake, its turquoise colour fed by glacial flour. The glacier has lost more than 70% of its volume since systematic measurement began in 1896. The wolf-head silhouette visible from Bow Summit is now a shadow of the form that appeared on early photographs.</p>
+    </div>
+
+    <div class="story-step" data-step="7" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [-117.245, 52.190], &quot;zoom&quot;: 11, &quot;pitch&quot;: 50, &quot;bearing&quot;: 210}}">
+      <p><strong>Columbia Icefield.</strong> Meltwater here drains to three oceans — Pacific, Atlantic, and Arctic. The Athabasca Glacier has retreated 1.5 km since 1844. The Icefields Parkway marker posts make the recession human-scaled: each one represents a decade of loss, spaced along a walking path from the current terminus back to where the ice once stood.</p>
+    </div>
+
+    <div class="story-step" data-step="8" data-update="{&quot;glacier-tour&quot;: {&quot;center&quot;: [-50, 45], &quot;zoom&quot;: 2.5, &quot;pitch&quot;: 0, &quot;bearing&quot;: 0}}">
+      <p><strong>The same story, twice.</strong> These are not isolated case studies. The mass balance record from every glacier in this tour correlates with the same Northern Hemisphere temperature signal. The Alps and the Rockies are running the same experiment. Both are getting the same result.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr />
+
+<h2 id="a-note-on-the-maps">A note on the maps</h2>
+
+<p>These maps use Mapbox GL terrain — the <code class="language-plaintext highlighter-rouge">mapbox-terrain-dem-v1</code> digital elevation model at 512-pixel tiles, rendered in WebGL with 1.5× vertical exaggeration. The satellite imagery is Maxar. The ice visible is real and current to within a few years. The grey and brown that was once white is real too.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">data-terrain</code> attribute in Loom’s Mapbox adapter triggers this automatically:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">data-map=</span><span class="s">"findelen"</span>
+     <span class="na">data-pitch=</span><span class="s">"55"</span>
+     <span class="na">data-bearing=</span><span class="s">"155"</span>
+     <span class="na">data-terrain=</span><span class="s">"1.5"</span>
+     <span class="na">data-style=</span><span class="s">"mapbox://styles/mapbox/satellite-streets-v12"</span>
+     <span class="na">style=</span><span class="s">"height:420px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>For scrollytelling, pitch and bearing are first-class parameters in <code class="language-plaintext highlighter-rouge">data-update</code> — the camera tilts and rotates smoothly between sites on each scroll step.</p>
+
+      </div>
+
+      <!-- essay-footer-notes.html — References / endnotes section.
+     Hidden by default; assets/js/essay/core.js shows it and populates
+     #essay-endnotes-list from [data-cite] elements in the content.
+
+     In posts, create citation markers with:
+       <cite data-cite="Author, Title, URL">1</cite>
+     The JS collects these and renders a numbered reference list here. -->
+
+<footer class="essay-endnotes" id="essay-endnotes" aria-label="References" hidden>
+  <div class="essay-endnotes-inner">
+    <h2 class="essay-endnotes-heading">References</h2>
+    <ol class="essay-endnotes-list" id="essay-endnotes-list">
+      <!-- Populated at runtime by assets/js/essay/core.js buildEndnotes() -->
+    </ol>
+  </div>
+</footer>
+
+
+      <!-- subscribe-cta.html — RSS/newsletter call to action, shown at end of posts -->
+<aside class="subscribe-cta" aria-label="Subscribe">
+  <div class="subscribe-cta-inner">
+    <div class="subscribe-cta-text">
+      <strong class="subscribe-cta-heading">Enjoyed this?</strong>
+      <p class="subscribe-cta-body">New essays on computational thinking, environmental modelling, and the mathematics of complex systems.</p>
+    </div>
+    <a href="/feed.xml" class="subscribe-cta-btn" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+      </svg>
+      Subscribe via RSS
+    </a>
+  </div>
+</aside>
+
+      
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<aside class="related-posts" aria-label="Related articles">
+  <h2 class="related-posts-heading">Related</h2>
+  <div class="related-posts-grid">
+    
+    <a href="/scrollytelling-with-maps-and-charts/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Scrollytelling with Maps and Charts</h3>
+        <time class="related-post-date" datetime="2026-02-27">27 Feb 2026</time>
+      </div>
+    </a>
+    
+    <a href="/mapbox-gl-interactive-maps/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Interactive Maps with Mapbox GL JS</h3>
+        <time class="related-post-date" datetime="2026-03-01">1 Mar 2026</time>
+      </div>
+    </a>
+    
+    <a href="/documenting-fieldwork-media-and-embeds/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/matterhorn.jpg')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Documenting Fieldwork: Photos, Video, and Embedded Media</h3>
+        <time class="related-post-date" datetime="2026-03-05">5 Mar 2026</time>
+      </div>
+    </a>
+    
+  </div>
+</aside>
+
+
+
+    </article>
+  </main>
+
+  <aside
+    class="essay-sidenotes"
+    id="essay-sidenotes"
+    aria-label="Margin notes"
+  ></aside>
+
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+
+    <!-- Col 1: Brand -->
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="28" height="28">
+        Loom<span>.</span>
+      </div>
+      
+      <p class="footer-brand-desc">Jekyll theme. Clean typography, dark mode, computational essays.</p>
+      
+
+      <div class="footer-social">
+        
+        
+        <a href="/feed.xml" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Topics -->
+    <nav aria-labelledby="footer-topics">
+      <h3 class="footer-col-title" id="footer-topics">Topics</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/topic/ecology/">ecology</a></li>
+        
+        <li><a href="/topic/meta/">meta</a></li>
+        
+        <li><a href="/topic/science/">science</a></li>
+        
+      </ul>
+    </nav>
+
+    <!-- Col 3: Secondary navigation -->
+    
+    <nav aria-labelledby="footer-company">
+      <h3 class="footer-col-title" id="footer-company">Company</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/feed.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+    
+
+    <!-- Col 4: Resources -->
+    <nav aria-labelledby="footer-resources">
+      <h3 class="footer-col-title" id="footer-resources">Resources</h3>
+      <ul class="footer-links">
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/feed.xml">RSS Feed</a></li>
+        <li><a href="/topics/">All Topics</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.footer-inner -->
+
+  <div class="footer-bottom">
+    <span class="footer-copy">
+      &copy; 2026 Loom.
+    </span>
+    <div class="footer-legal">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- Alpine.js bundle -->
+<script type="module" src="/assets/built/main.js"></script>
+
+<!-- Visualization runtime — detects and loads CDN libraries dynamically -->
+<script type="module" src="/assets/js/core.js"></script>
+
+<!-- Search overlay — event-driven: nav button $dispatches 'search:open' -->
+<div
+  x-data="search"
+  x-init="init()"
+  @search:open.window="open()"
+>
+  <div
+    class="search-overlay"
+    x-show="isOpen"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click.self="close()"
+    style="display: none;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+  >
+    <div class="search-panel">
+      <div class="search-input-wrap">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search posts…"
+          x-model="query"
+          x-ref="input"
+          @input.debounce.300ms="runSearch()"
+          @keydown.escape="close()"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search query"
+        >
+        <kbd class="search-esc" aria-hidden="true">ESC</kbd>
+      </div>
+
+      <div class="search-results" x-show="query.trim().length > 0">
+        <div class="search-status" x-show="loading" aria-live="polite">Searching…</div>
+        <div class="search-status" x-show="!loading && results.length === 0" aria-live="polite">
+          No results for "<span x-text="query"></span>"
+        </div>
+        <ul class="search-result-list" x-show="!loading && results.length > 0" role="list">
+          <template x-for="result in results" :key="result.url">
+            <li>
+              <a :href="result.url" class="search-result-item" @click="close()">
+                <div class="search-result-title" x-text="result.meta?.title || result.url"></div>
+                <div class="search-result-excerpt" x-html="result.excerpt"></div>
+              </a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

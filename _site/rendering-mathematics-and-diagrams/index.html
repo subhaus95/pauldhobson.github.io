@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rendering Mathematics and Diagrams — Loom</title>
+<meta name="description" content="How to embed KaTeX equations and Mermaid diagrams in posts — auto-detected, no configuration required.">
+
+<!-- Dark mode flash prevention — runs synchronously before first paint -->
+<script>
+  (function () {
+    var s = localStorage.getItem('loom-dark');
+    var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+
+<!-- Preconnect to CDN domains used by the viz runtime -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://esm.sh">
+<link rel="preconnect" href="https://api.mapbox.com">
+<link rel="preconnect" href="https://events.mapbox.com">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<!-- Theme stylesheet (Vite build output) -->
+<link rel="stylesheet" href="/assets/built/main.css">
+
+
+
+<!-- Syntax highlighting (Rouge — light + dark) -->
+<link rel="stylesheet" href="/assets/css/syntax.css">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Rendering Mathematics and Diagrams | Loom</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Rendering Mathematics and Diagrams" />
+<meta name="author" content="Paul Hobson" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="How to embed KaTeX equations and Mermaid diagrams in posts — auto-detected, no configuration required." />
+<meta property="og:description" content="How to embed KaTeX equations and Mermaid diagrams in posts — auto-detected, no configuration required." />
+<link rel="canonical" href="/rendering-mathematics-and-diagrams/" />
+<meta property="og:url" content="/rendering-mathematics-and-diagrams/" />
+<meta property="og:site_name" content="Loom" />
+<meta property="og:image" content="/assets/images/og-default.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-25T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/og-default.png" />
+<meta property="twitter:title" content="Rendering Mathematics and Diagrams" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-24T23:33:41-07:00","datePublished":"2026-02-25T00:00:00-07:00","description":"How to embed KaTeX equations and Mermaid diagrams in posts — auto-detected, no configuration required.","headline":"Rendering Mathematics and Diagrams","image":"/assets/images/og-default.png","mainEntityOfPage":{"@type":"WebPage","@id":"/rendering-mathematics-and-diagrams/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/loom_collective.jpg"},"name":"Paul Hobson"},"url":"/rendering-mathematics-and-diagrams/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+</head>
+<body class="
+  post-template
+   tag-meta
+   tag-hash-math
+   tag-hash-diagram
+  
+  
+  
+  
+  
+">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="nav" x-data="{ open: false }">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="32" height="32">
+      Loom<span>.</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      
+      <li>
+        <a href="/">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/">Archive</a>
+      </li>
+      
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+
+      <!-- Search button -->
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Search (⌘K)"
+        title="Search (⌘K)"
+        @click="$dispatch('search:open')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- Dark mode toggle -->
+      <button
+        class="theme-toggle"
+        x-data="darkMode"
+        x-init="init()"
+        @click="toggle()"
+        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        type="button"
+      >
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="mobile-nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open"
+        :aria-label="open ? 'Close menu' : 'Open menu'"
+        type="button"
+      >
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div><!-- /.nav-actions -->
+  </div><!-- /.nav-inner -->
+
+  <!-- Mobile drawer -->
+  <div
+    class="mobile-nav"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-1"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-1"
+    @click.outside="open = false"
+    @keydown.escape.window="open = false"
+  >
+    <ul role="list">
+      
+      <li>
+        <a href="/" @click="open = false">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/" @click="open = false">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/" @click="open = false">Archive</a>
+      </li>
+      
+    </ul>
+  </div><!-- /.mobile-nav -->
+
+</header>
+
+
+<div id="main-content">
+  <main class="post-main">
+<article>
+
+  <!-- POST HEADER -->
+  <header class="post-header">
+    <div class="post-header-inner">
+
+      
+      <a href="/topic/meta/" class="post-tag">meta</a>
+      
+
+      <h1 class="post-title">Rendering Mathematics and Diagrams</h1>
+
+      
+      <p class="post-excerpt">How to embed KaTeX equations and Mermaid diagrams in posts — auto-detected, no configuration required.</p>
+      
+
+      <div class="post-meta">
+        <span class="post-meta-author" style="display:flex;align-items:center;gap:8px;">
+          
+          
+          
+          <img loading="lazy" src="/assets/images/authors/paul-hobson.jpg" alt="Paul Hobson" class="post-meta-avatar" width="40" height="40">
+          
+          <span class="post-meta-name">
+
+
+
+
+
+
+
+
+  
+  
+    
+<a href="/author/paul-hobson/" class="author-link">Paul Hobson</a>
+    
+  
+  
+
+</span>
+        </span>
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <time class="post-meta-date" datetime="2026-02-25">
+          25 Feb 2026
+        </time>
+        
+        
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <span class="post-meta-updated">Updated <time datetime="2026-02-24">24 Feb 2026</time></span>
+        
+        <span class="post-meta-divider" aria-hidden="true">·</span>
+        <span class="post-meta-reading-time">3 min read</span>
+      </div>
+
+    </div><!-- /.post-header-inner -->
+  </header>
+
+  <!-- SERIES NAV -->
+  
+
+
+<nav class="series-nav" aria-label="Series: Building Loom">
+  <div class="series-nav-header">
+    <span class="series-nav-label">Series</span>
+    <span class="series-nav-title">Building Loom</span>
+  </div>
+  <ol class="series-nav-list">
+    
+    <li class="series-nav-item">
+      
+      <a href="/welcome-to-loom/" class="series-nav-link">
+        <span class="series-nav-number">1</span>
+        What Loom Is and How It Works
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item series-nav-item--current">
+      
+      <span class="series-nav-link series-nav-link--current" aria-current="page">
+        <span class="series-nav-number">2</span>
+        Rendering Mathematics and Diagrams
+      </span>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/interactive-charts-echarts-and-d3/" class="series-nav-link">
+        <span class="series-nav-number">3</span>
+        Interactive Charts with ECharts and D3
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/scrollytelling-with-maps-and-charts/" class="series-nav-link">
+        <span class="series-nav-number">4</span>
+        Scrollytelling with Maps and Charts
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/mapbox-gl-interactive-maps/" class="series-nav-link">
+        <span class="series-nav-number">5</span>
+        Interactive Maps with Mapbox GL JS
+      </a>
+      
+    </li>
+    
+    <li class="series-nav-item">
+      
+      <a href="/documenting-fieldwork-media-and-embeds/" class="series-nav-link">
+        <span class="series-nav-number">6</span>
+        Documenting Fieldwork: Photos, Video, and Embedded Media
+      </a>
+      
+    </li>
+    
+  </ol>
+</nav>
+
+
+
+
+  <!-- FEATURE IMAGE -->
+  
+  <figure class="post-feature-image">
+    <img
+      src="/assets/images/og-default.png"
+      alt="Rendering Mathematics and Diagrams"
+      loading="eager"
+    >
+    
+  </figure>
+  
+
+  <!-- POST CONTENT -->
+  <div class="post-content-wrap">
+    <section class="gh-content">
+      <p>This post demonstrates the two text-rendering libraries built into the theme: <strong>KaTeX</strong> for mathematics and <strong>Mermaid</strong> for diagrams. Both are loaded automatically when the runtime detects the relevant content — no front-matter flags needed, though you can add <code class="language-plaintext highlighter-rouge">math: true</code> or <code class="language-plaintext highlighter-rouge">diagram: true</code> to force-load them.</p>
+
+<h2 id="katex-mathematics">KaTeX mathematics</h2>
+
+<p>Inline math is delimited with single dollar signs. The Pythagorean theorem states $a^2 + b^2 = c^2$, and Euler’s identity is $e^{i\pi} + 1 = 0$.</p>
+
+<p>Display math uses double dollar signs on their own lines:</p>
+
+\[\int_{-\infty}^{\infty} e^{-x^2}\, dx = \sqrt{\pi}\]
+
+<p>The Navier–Stokes momentum equation for an incompressible Newtonian fluid:</p>
+
+\[\rho \left(\frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla)\mathbf{u}\right) = -\nabla p + \mu \nabla^2 \mathbf{u} + \mathbf{f}\]
+
+<p>Taylor series expansion about $x = a$:</p>
+
+\[f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n\]
+
+<p>LaTeX backslash notation also works for inline ( \sigma = \sqrt{\text{Var}(X)} ) and display mode:</p>
+
+\[\mathbf{A}\mathbf{x} = \lambda \mathbf{x}\]
+
+<h3 id="rendering-details">Rendering details</h3>
+
+<p>KaTeX is loaded from CDN and triggered by <code class="language-plaintext highlighter-rouge">renderMathInElement</code> on the <code class="language-plaintext highlighter-rouge">.gh-content</code> container. The runtime detects the <code class="language-plaintext highlighter-rouge">$</code> character in content text and loads KaTeX automatically — no flag needed. Setting <code class="language-plaintext highlighter-rouge">math: true</code> in front matter adds <code class="language-plaintext highlighter-rouge">tag-hash-math</code> to the <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> class, which forces loading even when the content section hasn’t rendered yet.</p>
+
+<hr />
+
+<h2 id="mermaid-diagrams">Mermaid diagrams</h2>
+
+<p>Mermaid diagrams are written as fenced code blocks with the language set to <code class="language-plaintext highlighter-rouge">mermaid</code>. Ghost and Jekyll both render these as <code class="language-plaintext highlighter-rouge">&lt;code class="language-mermaid"&gt;</code>, and the runtime converts them to <code class="language-plaintext highlighter-rouge">&lt;div class="mermaid"&gt;</code> before passing to Mermaid’s renderer.</p>
+
+<h3 id="flowchart">Flowchart</h3>
+
+<pre><code class="language-mermaid">flowchart TD
+    A[Post published] --&gt; B{Has math?}
+    B -- yes --&gt; C[Load KaTeX CDN]
+    B -- no  --&gt; D{Has mermaid?}
+    C --&gt; E[renderMathInElement]
+    D -- yes --&gt; F[Load Mermaid CDN]
+    D -- no  --&gt; G[Done]
+    F --&gt; H[mermaid.run]
+    E --&gt; G
+    H --&gt; G
+</code></pre>
+
+<h3 id="sequence-diagram">Sequence diagram</h3>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Browser
+    participant core.js
+    participant CDN
+
+    Browser-&gt;&gt;core.js: DOMContentLoaded
+    core.js-&gt;&gt;core.js: detect libraries needed
+    core.js-&gt;&gt;CDN: loadScript(katex.min.js)
+    CDN--&gt;&gt;core.js: loaded
+    core.js-&gt;&gt;CDN: loadScript(auto-render.min.js)
+    CDN--&gt;&gt;core.js: loaded
+    core.js-&gt;&gt;Browser: renderMathInElement()
+</code></pre>
+
+<h3 id="class-diagram">Class diagram</h3>
+
+<pre><code class="language-mermaid">classDiagram
+    class RegistryEntry {
+        +string id
+        +Function detect
+        +CDNConfig cdn
+        +Function init
+        +string selector
+        +Function render
+        +Function update
+    }
+
+    class CDNConfig {
+        +string[] styles
+        +string[] scripts
+    }
+
+    class Adapter {
+        &lt;&lt;interface&gt;&gt;
+        +render(el, options) instance
+        +update(el, data, instance)
+    }
+
+    RegistryEntry --&gt; CDNConfig : cdn
+    RegistryEntry --&gt; Adapter  : render / update
+</code></pre>
+
+<h3 id="rendering-details-1">Rendering details</h3>
+
+<p>Mermaid v10+ is used, which requires calling <code class="language-plaintext highlighter-rouge">mermaid.run({ nodes })</code> rather than the deprecated <code class="language-plaintext highlighter-rouge">mermaid.init()</code>. The runtime handles both versions for compatibility. Theme is set to <code class="language-plaintext highlighter-rouge">dark</code> when <code class="language-plaintext highlighter-rouge">data-theme="dark"</code> is on the <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> element, so diagrams match the current colour scheme.</p>
+
+    </section>
+  </div><!-- /.post-content-wrap -->
+
+  
+
+
+
+<aside class="author-card" aria-label="About the author">
+  <div class="author-card-inner">
+
+    
+    <a href="/author/paul-hobson/" tabindex="-1" aria-hidden="true">
+      <img
+        src="/assets/images/authors/paul-hobson.jpg"
+        alt="Paul Hobson"
+        class="author-card-avatar"
+        width="80"
+        height="80"
+        loading="lazy"
+      >
+    </a>
+    
+
+    <div>
+      <a href="/author/paul-hobson/" class="author-card-name">Paul Hobson</a>
+      <span class="author-card-location">Calgary, AB</span>
+      <p class="author-card-bio">Former Glaciologist and environmental modeller. Field experience on glaciers in the Swiss Alps and Canadian Rockies. Interested in ice dynamics, catchment hydrology, and the intersection of computational science and long-form writing.
+</p>
+      
+    </div>
+
+  </div>
+</aside>
+
+
+  <!-- subscribe-cta.html — RSS/newsletter call to action, shown at end of posts -->
+<aside class="subscribe-cta" aria-label="Subscribe">
+  <div class="subscribe-cta-inner">
+    <div class="subscribe-cta-text">
+      <strong class="subscribe-cta-heading">Enjoyed this?</strong>
+      <p class="subscribe-cta-body">New essays on computational thinking, environmental modelling, and the mathematics of complex systems.</p>
+    </div>
+    <a href="/feed.xml" class="subscribe-cta-btn" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+      </svg>
+      Subscribe via RSS
+    </a>
+  </div>
+</aside>
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<aside class="related-posts" aria-label="Related articles">
+  <h2 class="related-posts-heading">Related</h2>
+  <div class="related-posts-grid">
+    
+    <a href="/welcome-to-loom/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">What Loom Is and How It Works</h3>
+        <time class="related-post-date" datetime="2026-02-24">24 Feb 2026</time>
+      </div>
+    </a>
+    
+    <a href="/scrollytelling-with-maps-and-charts/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Scrollytelling with Maps and Charts</h3>
+        <time class="related-post-date" datetime="2026-02-27">27 Feb 2026</time>
+      </div>
+    </a>
+    
+    <a href="/sample-presentation/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Introducing Loom</h3>
+        <time class="related-post-date" datetime="2026-02-28">28 Feb 2026</time>
+      </div>
+    </a>
+    
+  </div>
+</aside>
+
+
+
+  <!-- POST FOOTER — tags + share -->
+  <footer class="post-footer">
+    <div class="post-footer-inner">
+
+      
+      <div class="post-tags">
+        
+        <a href="/tag/katex/" class="post-tag-chip">katex</a>
+        
+        <a href="/tag/mermaid/" class="post-tag-chip">mermaid</a>
+        
+        <a href="/tag/mathematics/" class="post-tag-chip">mathematics</a>
+        
+        <a href="/tag/visualization/" class="post-tag-chip">visualization</a>
+        
+        <a href="/tag/how-to/" class="post-tag-chip">how-to</a>
+        
+      </div>
+      
+
+      <div class="post-share">
+        <span class="post-share-label">Share</span>
+
+        <a
+          href="https://twitter.com/intent/tweet?text=Rendering+Mathematics+and+Diagrams&url=/rendering-mathematics-and-diagrams/"
+          class="share-btn share-btn--twitter"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on X / Twitter"
+          title="Share on X"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/shareArticle?mini=true&url=/rendering-mathematics-and-diagrams/&title=Rendering+Mathematics+and+Diagrams"
+          class="share-btn share-btn--linkedin"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Share on LinkedIn"
+          title="Share on LinkedIn"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+
+        <!-- Copy link -->
+        <button
+          class="share-btn share-btn--copy"
+          x-data="{ copied: false }"
+          @click="navigator.clipboard.writeText('/rendering-mathematics-and-diagrams/'); copied = true; setTimeout(() => copied = false, 2000)"
+          :aria-label="copied ? 'Copied!' : 'Copy link'"
+          :title="copied ? 'Copied!' : 'Copy link'"
+          type="button"
+        >
+          <svg x-show="!copied" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg x-show="copied" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+
+    </div><!-- /.post-footer-inner -->
+  </footer>
+
+</article>
+
+  <!-- POST NAVIGATION -->
+  
+  <nav class="post-nav" aria-label="Post navigation">
+    <div class="post-nav-inner">
+
+      
+      <a href="/howto/" class="post-nav-item post-nav-item--prev">
+        <span class="post-nav-direction">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Previous
+        </span>
+        <span class="post-nav-title">HOWTO</span>
+      </a>
+      
+
+      
+      <a href="/interactive-charts-echarts-and-d3/" class="post-nav-item post-nav-item--next">
+        <span class="post-nav-direction">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+        <span class="post-nav-title">Interactive Charts with ECharts and D3</span>
+      </a>
+      
+
+    </div>
+  </nav>
+  
+
+</main>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+
+    <!-- Col 1: Brand -->
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="28" height="28">
+        Loom<span>.</span>
+      </div>
+      
+      <p class="footer-brand-desc">Jekyll theme. Clean typography, dark mode, computational essays.</p>
+      
+
+      <div class="footer-social">
+        
+        
+        <a href="/feed.xml" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Topics -->
+    <nav aria-labelledby="footer-topics">
+      <h3 class="footer-col-title" id="footer-topics">Topics</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/topic/ecology/">ecology</a></li>
+        
+        <li><a href="/topic/meta/">meta</a></li>
+        
+        <li><a href="/topic/science/">science</a></li>
+        
+      </ul>
+    </nav>
+
+    <!-- Col 3: Secondary navigation -->
+    
+    <nav aria-labelledby="footer-company">
+      <h3 class="footer-col-title" id="footer-company">Company</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/feed.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+    
+
+    <!-- Col 4: Resources -->
+    <nav aria-labelledby="footer-resources">
+      <h3 class="footer-col-title" id="footer-resources">Resources</h3>
+      <ul class="footer-links">
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/feed.xml">RSS Feed</a></li>
+        <li><a href="/topics/">All Topics</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.footer-inner -->
+
+  <div class="footer-bottom">
+    <span class="footer-copy">
+      &copy; 2026 Loom.
+    </span>
+    <div class="footer-legal">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- Alpine.js bundle -->
+<script type="module" src="/assets/built/main.js"></script>
+
+<!-- Visualization runtime — detects and loads CDN libraries dynamically -->
+<script type="module" src="/assets/js/core.js"></script>
+
+<!-- Search overlay — event-driven: nav button $dispatches 'search:open' -->
+<div
+  x-data="search"
+  x-init="init()"
+  @search:open.window="open()"
+>
+  <div
+    class="search-overlay"
+    x-show="isOpen"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click.self="close()"
+    style="display: none;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+  >
+    <div class="search-panel">
+      <div class="search-input-wrap">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search posts…"
+          x-model="query"
+          x-ref="input"
+          @input.debounce.300ms="runSearch()"
+          @keydown.escape="close()"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search query"
+        >
+        <kbd class="search-esc" aria-hidden="true">ESC</kbd>
+      </div>
+
+      <div class="search-results" x-show="query.trim().length > 0">
+        <div class="search-status" x-show="loading" aria-live="polite">Searching…</div>
+        <div class="search-status" x-show="!loading && results.length === 0" aria-live="polite">
+          No results for "<span x-text="query"></span>"
+        </div>
+        <ul class="search-result-list" x-show="!loading && results.length > 0" role="list">
+          <template x-for="result in results" :key="result.url">
+            <li>
+              <a :href="result.url" class="search-result-item" @click="close()">
+                <div class="search-result-title" x-text="result.meta?.title || result.url"></div>
+                <div class="search-result-excerpt" x-html="result.excerpt"></div>
+              </a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

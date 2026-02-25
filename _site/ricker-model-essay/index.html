@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ricker Model: Population Dynamics Through a Single Equation — Loom</title>
+<meta name="description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.">
+
+<!-- Dark mode flash prevention — runs synchronously before first paint -->
+<script>
+  (function () {
+    var s = localStorage.getItem('loom-dark');
+    var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>
+
+<!-- Preconnect to CDN domains used by the viz runtime -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://esm.sh">
+<link rel="preconnect" href="https://api.mapbox.com">
+<link rel="preconnect" href="https://events.mapbox.com">
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+<!-- Theme stylesheet (Vite build output) -->
+<link rel="stylesheet" href="/assets/built/main.css">
+
+
+
+<!-- Syntax highlighting (Rouge — light + dark) -->
+<link rel="stylesheet" href="/assets/css/syntax.css">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The Ricker Model: Population Dynamics Through a Single Equation | Loom</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="The Ricker Model: Population Dynamics Through a Single Equation" />
+<meta name="author" content="Paul Hobson" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos." />
+<meta property="og:description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos." />
+<link rel="canonical" href="/ricker-model-essay/" />
+<meta property="og:url" content="/ricker-model-essay/" />
+<meta property="og:site_name" content="Loom" />
+<meta property="og:image" content="/assets/images/og-default.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-24T00:00:00-07:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="/assets/images/og-default.png" />
+<meta property="twitter:title" content="The Ricker Model: Population Dynamics Through a Single Equation" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-25T01:55:16-07:00","datePublished":"2026-02-24T00:00:00-07:00","description":"How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.","headline":"The Ricker Model: Population Dynamics Through a Single Equation","image":"/assets/images/og-default.png","mainEntityOfPage":{"@type":"WebPage","@id":"/ricker-model-essay/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/loom_collective.jpg"},"name":"Paul Hobson"},"url":"/ricker-model-essay/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+
+</head>
+<body class="
+  essay-template
+   tag-ecology
+   tag-hash-math
+  
+   tag-hash-viz
+  
+  
+  
+  
+">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="nav" x-data="{ open: false }">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="32" height="32">
+      Loom<span>.</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      
+      <li>
+        <a href="/">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/">Archive</a>
+      </li>
+      
+    </ul>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+
+      <!-- Search button -->
+      <button
+        class="search-toggle"
+        type="button"
+        aria-label="Search (⌘K)"
+        title="Search (⌘K)"
+        @click="$dispatch('search:open')"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- Dark mode toggle -->
+      <button
+        class="theme-toggle"
+        x-data="darkMode"
+        x-init="init()"
+        @click="toggle()"
+        :aria-label="dark ? 'Switch to light mode' : 'Switch to dark mode'"
+        type="button"
+      >
+        <!-- Sun icon (shown in light mode) -->
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (shown in dark mode) -->
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="mobile-nav-toggle"
+        @click="open = !open"
+        :aria-expanded="open"
+        :aria-label="open ? 'Close menu' : 'Open menu'"
+        type="button"
+      >
+        <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <svg x-show="open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+    </div><!-- /.nav-actions -->
+  </div><!-- /.nav-inner -->
+
+  <!-- Mobile drawer -->
+  <div
+    class="mobile-nav"
+    x-show="open"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0 -translate-y-1"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 -translate-y-1"
+    @click.outside="open = false"
+    @keydown.escape.window="open = false"
+  >
+    <ul role="list">
+      
+      <li>
+        <a href="/" @click="open = false">Home</a>
+      </li>
+      
+      <li>
+        <a href="/topics/" @click="open = false">Topics</a>
+      </li>
+      
+      <li>
+        <a href="/archive/" @click="open = false">Archive</a>
+      </li>
+      
+    </ul>
+  </div><!-- /.mobile-nav -->
+
+</header>
+
+
+<div id="main-content">
+  <!-- Essay stylesheet and runtime — self-contained -->
+<link rel="stylesheet" href="/assets/css/essay.css">
+<script type="module" src="/assets/js/essay/core.js"></script>
+
+<div class="essay-layout" id="essay-layout">
+
+  <!-- essay-toc.html — Sticky table of contents (left column).
+     The <ol> is empty on load; assets/js/essay/core.js populates it
+     from h2/h3 elements found in #essay-content after the page renders. -->
+
+<nav class="essay-toc" id="essay-toc" aria-label="Table of contents">
+  <div class="essay-toc-inner">
+    <p class="essay-toc-heading" aria-hidden="true">Contents</p>
+    <ol class="essay-toc-list" id="essay-toc-list">
+      <!-- Populated at runtime by assets/js/essay/core.js buildToc() -->
+    </ol>
+  </div>
+</nav>
+
+
+  <main class="essay-main" id="essay-main" role="main">
+    <article class="essay-article">
+
+      <!-- essay-hero.html — Header for computational essay template.
+     Displays feature image, tag label, title, excerpt, and post metadata. -->
+
+<header class="essay-hero">
+  
+  <figure class="essay-hero-figure">
+    <img
+      src="/assets/images/og-default.png"
+      alt="The Ricker Model: Population Dynamics Through a Single Equation"
+      class="essay-hero-img"
+      loading="eager"
+    >
+    
+  </figure>
+  
+
+  <div class="essay-hero-body">
+    
+    <a href="/topic/ecology/" class="essay-tag-label">ecology</a>
+    
+
+    <h1 class="essay-title">The Ricker Model: Population Dynamics Through a Single Equation</h1>
+
+    
+    <p class="essay-excerpt">How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.</p>
+    
+
+    <div class="essay-meta">
+      <div class="essay-authors">
+        <span class="essay-author">
+          
+          
+
+
+
+
+
+
+
+
+  
+  
+    
+<a href="/author/paul-hobson/" class="author-link">Paul Hobson</a>
+    
+  
+  
+
+
+        </span>
+      </div>
+      <div class="essay-meta-secondary">
+        <time class="essay-date" datetime="2026-02-24">24 Feb 2026</time>
+        
+        
+        <span class="essay-sep" aria-hidden="true">·</span>
+        <span class="essay-updated">Updated <time datetime="2026-02-25">25 Feb 2026</time></span>
+        
+        <span class="essay-sep" aria-hidden="true">·</span>
+        <span class="essay-reading-time">1 min read</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      
+
+
+      <div class="essay-content gh-content" id="essay-content">
+        <h2 id="introduction">Introduction</h2>
+
+<p>The Ricker model<cite data-cite="Ricker, W.E. (1954). Stock and Recruitment. Journal of the Fisheries Research Board of Canada 11(5):559–623."></cite> describes how a population changes from one generation to the next:</p>
+
+\[N_{t+1} = N_t \cdot r \cdot e^{-N_t / K}\]
+
+<p>where $N_t$ is the population at time $t$, $r$ is the intrinsic growth rate, and $K$ is the carrying capacity.</p>
+
+<h2 id="interactive-model">Interactive model</h2>
+
+<p>The widget below lets you explore how $r$ changes the long-run dynamics. Try dragging the slider.</p>
+
+<div data-viz="ricker" style="height: 360px;"></div>
+
+<h2 id="stability-analysis">Stability analysis</h2>
+
+<p>For small values of $r$, the population converges to a fixed point. As $r$ increases, period-doubling bifurcations appear — and eventually the dynamics become chaotic.</p>
+
+<p><span class="sidenote-anchor" data-sn="1">The period-doubling route to chaos</span> was described by Robert May in his landmark 1976 <em>Nature</em> paper, which showed that even simple ecological models produce unpredictable dynamics.</p>
+
+<aside class="sidenote" data-sn="1">
+May, R.M. (1976). Simple mathematical models with very complicated dynamics. <em>Nature</em> 261, 459–467.
+</aside>
+
+<h2 id="callout-example">Callout example</h2>
+
+<div class="callout callout-note">
+  <span class="callout-icon">💡</span>
+  <div class="callout-body">
+    <p>At $r = 2.692$, the Ricker model enters its first period-doubling bifurcation. The population alternates between two values rather than settling at a fixed point.</p>
+  </div>
+</div>
+
+<h2 id="references">References</h2>
+
+      </div>
+
+      <!-- essay-footer-notes.html — References / endnotes section.
+     Hidden by default; assets/js/essay/core.js shows it and populates
+     #essay-endnotes-list from [data-cite] elements in the content.
+
+     In posts, create citation markers with:
+       <cite data-cite="Author, Title, URL">1</cite>
+     The JS collects these and renders a numbered reference list here. -->
+
+<footer class="essay-endnotes" id="essay-endnotes" aria-label="References" hidden>
+  <div class="essay-endnotes-inner">
+    <h2 class="essay-endnotes-heading">References</h2>
+    <ol class="essay-endnotes-list" id="essay-endnotes-list">
+      <!-- Populated at runtime by assets/js/essay/core.js buildEndnotes() -->
+    </ol>
+  </div>
+</footer>
+
+
+      <!-- subscribe-cta.html — RSS/newsletter call to action, shown at end of posts -->
+<aside class="subscribe-cta" aria-label="Subscribe">
+  <div class="subscribe-cta-inner">
+    <div class="subscribe-cta-text">
+      <strong class="subscribe-cta-heading">Enjoyed this?</strong>
+      <p class="subscribe-cta-body">New essays on computational thinking, environmental modelling, and the mathematics of complex systems.</p>
+    </div>
+    <a href="/feed.xml" class="subscribe-cta-btn" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+      </svg>
+      Subscribe via RSS
+    </a>
+  </div>
+</aside>
+
+      
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<aside class="related-posts" aria-label="Related articles">
+  <h2 class="related-posts-heading">Related</h2>
+  <div class="related-posts-grid">
+    
+    <a href="/rendering-mathematics-and-diagrams/" class="related-post-card">
+      
+      <div class="related-post-img" style="background-image:url('/assets/images/og-default.png')"></div>
+      
+      <div class="related-post-body">
+        
+        <span class="related-post-tag">meta</span>
+        
+        <h3 class="related-post-title">Rendering Mathematics and Diagrams</h3>
+        <time class="related-post-date" datetime="2026-02-25">25 Feb 2026</time>
+      </div>
+    </a>
+    
+  </div>
+</aside>
+
+
+
+    </article>
+  </main>
+
+  <aside
+    class="essay-sidenotes"
+    id="essay-sidenotes"
+    aria-label="Margin notes"
+  ></aside>
+
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+
+    <!-- Col 1: Brand -->
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="28" height="28">
+        Loom<span>.</span>
+      </div>
+      
+      <p class="footer-brand-desc">Jekyll theme. Clean typography, dark mode, computational essays.</p>
+      
+
+      <div class="footer-social">
+        
+        
+        <a href="/feed.xml" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Col 2: Topics -->
+    <nav aria-labelledby="footer-topics">
+      <h3 class="footer-col-title" id="footer-topics">Topics</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/topic/ecology/">ecology</a></li>
+        
+        <li><a href="/topic/meta/">meta</a></li>
+        
+        <li><a href="/topic/science/">science</a></li>
+        
+      </ul>
+    </nav>
+
+    <!-- Col 3: Secondary navigation -->
+    
+    <nav aria-labelledby="footer-company">
+      <h3 class="footer-col-title" id="footer-company">Company</h3>
+      <ul class="footer-links">
+        
+        <li><a href="/about/">About</a></li>
+        
+        <li><a href="/feed.xml">RSS</a></li>
+        
+      </ul>
+    </nav>
+    
+
+    <!-- Col 4: Resources -->
+    <nav aria-labelledby="footer-resources">
+      <h3 class="footer-col-title" id="footer-resources">Resources</h3>
+      <ul class="footer-links">
+        <li><a href="/archive/">Archive</a></li>
+        <li><a href="/feed.xml">RSS Feed</a></li>
+        <li><a href="/topics/">All Topics</a></li>
+      </ul>
+    </nav>
+
+  </div><!-- /.footer-inner -->
+
+  <div class="footer-bottom">
+    <span class="footer-copy">
+      &copy; 2026 Loom.
+    </span>
+    <div class="footer-legal">
+      <a href="/privacy/">Privacy Policy</a>
+      <a href="/terms/">Terms of Service</a>
+    </div>
+  </div>
+
+</footer>
+
+
+<!-- Alpine.js bundle -->
+<script type="module" src="/assets/built/main.js"></script>
+
+<!-- Visualization runtime — detects and loads CDN libraries dynamically -->
+<script type="module" src="/assets/js/core.js"></script>
+
+<!-- Search overlay — event-driven: nav button $dispatches 'search:open' -->
+<div
+  x-data="search"
+  x-init="init()"
+  @search:open.window="open()"
+>
+  <div
+    class="search-overlay"
+    x-show="isOpen"
+    x-transition:enter="transition ease-out duration-150"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click.self="close()"
+    style="display: none;"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+  >
+    <div class="search-panel">
+      <div class="search-input-wrap">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input
+          class="search-input"
+          type="search"
+          placeholder="Search posts…"
+          x-model="query"
+          x-ref="input"
+          @input.debounce.300ms="runSearch()"
+          @keydown.escape="close()"
+          autocomplete="off"
+          spellcheck="false"
+          aria-label="Search query"
+        >
+        <kbd class="search-esc" aria-hidden="true">ESC</kbd>
+      </div>
+
+      <div class="search-results" x-show="query.trim().length > 0">
+        <div class="search-status" x-show="loading" aria-live="polite">Searching…</div>
+        <div class="search-status" x-show="!loading && results.length === 0" aria-live="polite">
+          No results for "<span x-text="query"></span>"
+        </div>
+        <ul class="search-result-list" x-show="!loading && results.length > 0" role="list">
+          <template x-for="result in results" :key="result.url">
+            <li>
+              <a :href="result.url" class="search-result-item" @click="close()">
+                <div class="search-result-title" x-text="result.meta?.title || result.url"></div>
+                <div class="search-result-excerpt" x-html="result.excerpt"></div>
+              </a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
