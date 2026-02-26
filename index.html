@@ -1,7 +1,86 @@
 ---
-layout: home
-title: Home
+layout: default
+title: Paul Hobson
 permalink: /
-pagination:
-  enabled: true
 ---
+
+<section class="hero-section">
+  <div class="hero">
+    <div class="hero-content">
+      <h1 class="hero-headline">Technology leader. Platform strategy. Organisational design.</h1>
+      <p class="hero-sub">I work at the intersection of engineering, product, and the organisational structures that make complex systems function. I write about what I learn.</p>
+      <div class="hero-actions">
+        <a href="{{ '/projects/' | relative_url }}" class="hero-cta-btn">Selected work →</a>
+        <a href="{{ '/about/' | relative_url }}" class="btn btn-ghost">About me</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posts-section">
+  <div class="posts-section-inner">
+
+    <div class="section-header">
+      <h2 class="section-title">Selected work</h2>
+      <a href="{{ '/projects/' | relative_url }}" class="section-link">All projects →</a>
+    </div>
+
+    <div class="posts-grid">
+      <article class="post-card">
+        <div class="card-image card-image--no-feature"></div>
+        <div class="card-body">
+          <span class="card-tag">Platform strategy</span>
+          <h3 class="card-title">Platform architecture and team topology</h3>
+          <p class="card-excerpt">How platform teams create leverage — and why the organisational design usually matters more than the technology.</p>
+        </div>
+      </article>
+      <article class="post-card">
+        <div class="card-image card-image--no-feature"></div>
+        <div class="card-body">
+          <span class="card-tag">Organisational design</span>
+          <h3 class="card-title">Engineering leadership in large organisations</h3>
+          <p class="card-excerpt">What changes when you move from building systems to building the teams and structures that build systems.</p>
+        </div>
+      </article>
+      <article class="post-card">
+        <div class="card-image card-image--no-feature"></div>
+        <div class="card-body">
+          <span class="card-tag">Writing</span>
+          <h3 class="card-title">Technical writing and public work</h3>
+          <p class="card-excerpt">Selected essays and notes from this site — writing that has been useful to others or that I keep returning to.</p>
+          <a href="{{ '/archive/' | relative_url }}" class="card-read-more">Browse writing →</a>
+        </div>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+{% if site.posts.size > 0 %}
+<section class="posts-section">
+  <div class="posts-section-inner">
+
+    <div class="section-header">
+      <h2 class="section-title">Recent writing</h2>
+      <a href="{{ '/archive/' | relative_url }}" class="section-link">View archive →</a>
+    </div>
+
+    <div class="posts-grid">
+      {% for post in site.posts limit: 3 %}
+      {% include post-card.html post=post %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+<section class="subscribe-cta">
+  <div class="subscribe-cta-inner">
+    <div class="subscribe-cta-text">
+      <strong class="subscribe-cta-heading">Get in touch</strong>
+      <p class="subscribe-cta-body">For consulting enquiries, collaboration, or just a conversation.</p>
+    </div>
+    <a href="{{ '/contact/' | relative_url }}" class="subscribe-cta-btn">Contact →</a>
+  </div>
+</section>

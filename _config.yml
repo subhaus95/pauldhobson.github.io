@@ -1,5 +1,5 @@
 title: Paul Hobson
-description: Writing on science, data, and ideas.
+description: Technology leader. Platform strategy. Organisational design.
 logo: /assets/images/paul-hobson.jpg
 url: "https://pauldhobson.github.io"
 baseurl: ""
@@ -77,17 +77,23 @@ pagination:
     before: 2
     after: 2
 
+hide_subscribe_cta: true
+
 navigation:
   - title: Home
     url: /
-  - title: Topics
-    url: /topics/
-  - title: Archive
+  - title: Projects
+    url: /projects/
+  - title: Writing
     url: /archive/
+  - title: Contact
+    url: /contact/
 
 secondary_navigation:
   - title: About
     url: /about/
+  - title: Resume
+    url: /resume/
   - title: RSS
     url: /feed.xml
 
