@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+
+<html lang="en" data-brand="paul" data-theme="light">
 <head>
   <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Ricker Model: Population Dynamics Through a Single Equation — Loom</title>
+<title>The Ricker Model: Population Dynamics Through a Single Equation — Paul Hobson</title>
 <meta name="description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.">
 
 <!-- Dark mode flash prevention — runs synchronously before first paint -->
 <script>
   (function () {
-    var s = localStorage.getItem('loom-dark');
-    var dark = s !== null ? s === '1' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var defaultDark = 'light' === 'dark';
+    var s = localStorage.getItem('theme');
+    var dark = s !== null ? s === 'dark' : defaultDark;
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   })();
 </script>
@@ -31,7 +33,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 
 <!-- Theme stylesheet (Vite build output) -->
-<link rel="stylesheet" href="/assets/built/main.css">
+<link rel="stylesheet" href="/assets/dist/main.css">
+
+<!-- Brand token overrides — loaded after main.css so variables cascade correctly -->
+
+<link rel="stylesheet" href="/assets/css/brand-paul.css">
 
 
 
@@ -39,26 +45,26 @@
 <link rel="stylesheet" href="/assets/css/syntax.css">
 
 <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>The Ricker Model: Population Dynamics Through a Single Equation | Loom</title>
+<title>The Ricker Model: Population Dynamics Through a Single Equation | Paul Hobson</title>
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="The Ricker Model: Population Dynamics Through a Single Equation" />
 <meta name="author" content="Paul Hobson" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos." />
 <meta property="og:description" content="How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos." />
-<link rel="canonical" href="/ricker-model-essay/" />
-<meta property="og:url" content="/ricker-model-essay/" />
-<meta property="og:site_name" content="Loom" />
-<meta property="og:image" content="/assets/images/og-default.png" />
+<link rel="canonical" href="https://pauldhobson.github.io/ricker-model-essay/" />
+<meta property="og:url" content="https://pauldhobson.github.io/ricker-model-essay/" />
+<meta property="og:site_name" content="Paul Hobson" />
+<meta property="og:image" content="https://pauldhobson.github.io/assets/images/og-default.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-02-24T00:00:00-07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="/assets/images/og-default.png" />
+<meta property="twitter:image" content="https://pauldhobson.github.io/assets/images/og-default.png" />
 <meta property="twitter:title" content="The Ricker Model: Population Dynamics Through a Single Equation" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-25T01:55:16-07:00","datePublished":"2026-02-24T00:00:00-07:00","description":"How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.","headline":"The Ricker Model: Population Dynamics Through a Single Equation","image":"/assets/images/og-default.png","mainEntityOfPage":{"@type":"WebPage","@id":"/ricker-model-essay/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/assets/images/loom_collective.jpg"},"name":"Paul Hobson"},"url":"/ricker-model-essay/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-25T14:33:41-07:00","datePublished":"2026-02-24T00:00:00-07:00","description":"How a deceptively simple recurrence relation explains boom-bust cycles in fish populations — and what it reveals about chaos.","headline":"The Ricker Model: Population Dynamics Through a Single Equation","image":"https://pauldhobson.github.io/assets/images/og-default.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://pauldhobson.github.io/ricker-model-essay/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://pauldhobson.github.io/assets/images/paul-hobson.jpg"},"name":"Paul Hobson"},"url":"https://pauldhobson.github.io/ricker-model-essay/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -84,8 +90,10 @@
 
     <!-- Logo -->
     <a href="/" class="nav-logo">
-      <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="32" height="32">
-      Loom<span>.</span>
+      
+      <img loading="lazy" src="/assets/images/paul-hobson.jpg" alt="Paul Hobson" width="32" height="32">
+      
+      Paul Hobson<span>.</span>
     </a>
 
     <!-- Desktop nav links -->
@@ -96,11 +104,15 @@
       </li>
       
       <li>
-        <a href="/topics/">Topics</a>
+        <a href="/projects/">Projects</a>
       </li>
       
       <li>
-        <a href="/archive/">Archive</a>
+        <a href="/archive/">Writing</a>
+      </li>
+      
+      <li>
+        <a href="/contact/">Contact</a>
       </li>
       
     </ul>
@@ -191,11 +203,15 @@
       </li>
       
       <li>
-        <a href="/topics/" @click="open = false">Topics</a>
+        <a href="/projects/" @click="open = false">Projects</a>
       </li>
       
       <li>
-        <a href="/archive/" @click="open = false">Archive</a>
+        <a href="/archive/" @click="open = false">Writing</a>
+      </li>
+      
+      <li>
+        <a href="/contact/" @click="open = false">Contact</a>
       </li>
       
     </ul>
@@ -426,11 +442,13 @@ May, R.M. (1976). Simple mathematical models with very complicated dynamics. <em
     <!-- Col 1: Brand -->
     <div class="footer-brand">
       <div class="footer-brand-logo">
-        <img loading="lazy" src="/assets/images/loom_collective.jpg" alt="Loom" width="28" height="28">
-        Loom<span>.</span>
+        
+        <img loading="lazy" src="/assets/images/paul-hobson.jpg" alt="Paul Hobson" width="28" height="28">
+        
+        Paul Hobson<span>.</span>
       </div>
       
-      <p class="footer-brand-desc">Jekyll theme. Clean typography, dark mode, computational essays.</p>
+      <p class="footer-brand-desc">Technology leader. Platform strategy. Organisational design.</p>
       
 
       <div class="footer-social">
@@ -468,6 +486,8 @@ May, R.M. (1976). Simple mathematical models with very complicated dynamics. <em
         
         <li><a href="/about/">About</a></li>
         
+        <li><a href="/resume/">Resume</a></li>
+        
         <li><a href="/feed.xml">RSS</a></li>
         
       </ul>
@@ -488,7 +508,7 @@ May, R.M. (1976). Simple mathematical models with very complicated dynamics. <em
 
   <div class="footer-bottom">
     <span class="footer-copy">
-      &copy; 2026 Loom.
+      &copy; 2026 Paul Hobson.
     </span>
     <div class="footer-legal">
       <a href="/privacy/">Privacy Policy</a>
@@ -500,7 +520,7 @@ May, R.M. (1976). Simple mathematical models with very complicated dynamics. <em
 
 
 <!-- Alpine.js bundle -->
-<script type="module" src="/assets/built/main.js"></script>
+<script type="module" src="/assets/dist/main.js"></script>
 
 <!-- Visualization runtime — detects and loads CDN libraries dynamically -->
 <script type="module" src="/assets/js/core.js"></script>
