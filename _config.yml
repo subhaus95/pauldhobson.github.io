@@ -95,6 +95,8 @@ secondary_navigation:
     url: /about/
   - title: Resume
     url: /resume/
+  - title: LinkedIn
+    url: https://linkedin.com/in/pauldhobson
   - title: RSS
     url: /feed.xml
 
