@@ -52,19 +52,19 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="A fast Jekyll site with dark mode, computational essays, and a full visualisation runtime — what’s in the stack and why each piece is here." />
 <meta property="og:description" content="A fast Jekyll site with dark mode, computational essays, and a full visualisation runtime — what’s in the stack and why each piece is here." />
-<link rel="canonical" href="https://pauldhobson.github.io/welcome-to-loom/" />
-<meta property="og:url" content="https://pauldhobson.github.io/welcome-to-loom/" />
+<link rel="canonical" href="http://localhost:4000/welcome-to-loom/" />
+<meta property="og:url" content="http://localhost:4000/welcome-to-loom/" />
 <meta property="og:site_name" content="Paul Hobson" />
-<meta property="og:image" content="https://pauldhobson.github.io/assets/images/og-default.webp" />
+<meta property="og:image" content="http://localhost:4000/assets/images/og-default.webp" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2026-02-24T00:00:00-07:00" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:image" content="https://pauldhobson.github.io/assets/images/og-default.webp" />
+<meta property="twitter:image" content="http://localhost:4000/assets/images/og-default.webp" />
 <meta property="twitter:title" content="What Loom Is and How It Works" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-25T14:33:41-07:00","datePublished":"2026-02-24T00:00:00-07:00","description":"A fast Jekyll site with dark mode, computational essays, and a full visualisation runtime — what’s in the stack and why each piece is here.","headline":"What Loom Is and How It Works","image":"https://pauldhobson.github.io/assets/images/og-default.webp","mainEntityOfPage":{"@type":"WebPage","@id":"https://pauldhobson.github.io/welcome-to-loom/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://pauldhobson.github.io/assets/images/paul-hobson.jpg"},"name":"Paul Hobson"},"url":"https://pauldhobson.github.io/welcome-to-loom/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Paul Hobson"},"dateModified":"2026-02-25T14:33:41-07:00","datePublished":"2026-02-24T00:00:00-07:00","description":"A fast Jekyll site with dark mode, computational essays, and a full visualisation runtime — what’s in the stack and why each piece is here.","headline":"What Loom Is and How It Works","image":"http://localhost:4000/assets/images/og-default.webp","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/welcome-to-loom/"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"http://localhost:4000/assets/images/paul-hobson.jpg"},"name":"Paul Hobson"},"url":"http://localhost:4000/welcome-to-loom/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -589,7 +589,7 @@ wireScrolly() — route story:step events to the matching adapter
         <span class="post-share-label">Share</span>
 
         <a
-          href="https://twitter.com/intent/tweet?text=What+Loom+Is+and+How+It+Works&url=https://pauldhobson.github.io/welcome-to-loom/"
+          href="https://twitter.com/intent/tweet?text=What+Loom+Is+and+How+It+Works&url=http://localhost:4000/welcome-to-loom/"
           class="share-btn share-btn--twitter"
           target="_blank"
           rel="noopener noreferrer"
@@ -600,7 +600,7 @@ wireScrolly() — route story:step events to the matching adapter
         </a>
 
         <a
-          href="https://www.linkedin.com/shareArticle?mini=true&url=https://pauldhobson.github.io/welcome-to-loom/&title=What+Loom+Is+and+How+It+Works"
+          href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/welcome-to-loom/&title=What+Loom+Is+and+How+It+Works"
           class="share-btn share-btn--linkedin"
           target="_blank"
           rel="noopener noreferrer"
@@ -614,7 +614,7 @@ wireScrolly() — route story:step events to the matching adapter
         <button
           class="share-btn share-btn--copy"
           x-data="{ copied: false }"
-          @click="navigator.clipboard.writeText('https://pauldhobson.github.io/welcome-to-loom/'); copied = true; setTimeout(() => copied = false, 2000)"
+          @click="navigator.clipboard.writeText('http://localhost:4000/welcome-to-loom/'); copied = true; setTimeout(() => copied = false, 2000)"
           :aria-label="copied ? 'Copied!' : 'Copy link'"
           :title="copied ? 'Copied!' : 'Copy link'"
           type="button"
@@ -680,6 +680,13 @@ wireScrolly() — route story:step events to the matching adapter
 
       <div class="footer-social">
         
+        
+        
+        <a href="https://linkedin.com/in/pauldhobson" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
         
         <a href="/feed.xml" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="RSS feed">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
