@@ -3,7 +3,7 @@ layout: post
 title: "The Faster Horse Problem"
 date: 2026-03-14
 tags: [automation, technology-strategy, organisational-design]
-iamge: /assets/images/horse.jpg
+image: /assets/images/horse.jpg
 excerpt: "Automation presents two opportunities. One is transformative — rethinking what a process is for. The other is just a faster version of something that shouldn't exist in its current form. Most organisations default to the second."
 ---
 
