@@ -3,6 +3,7 @@ layout: post
 title: "Platform Engineering at Scale"
 date: 2026-03-10
 tags: [platform-engineering, technology-strategy, team-topology]
+image: /assets/images/city-grid.jpg
 excerpt: "Platform teams create leverage — but only when the organisational design matches the technology model. Most platform programmes get one right and ignore the other."
 ---
 

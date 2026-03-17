@@ -3,6 +3,7 @@ layout: post
 title: "The Faster Horse Problem"
 date: 2026-03-14
 tags: [automation, technology-strategy, organisational-design]
+iamge: /assets/images/horse.jpg
 excerpt: "Automation presents two opportunities. One is transformative — rethinking what a process is for. The other is just a faster version of something that shouldn't exist in its current form. Most organisations default to the second."
 ---
 
@@ -21,6 +22,18 @@ This is useful. It reduces cost, reduces error, and frees people to do other thi
 The second kind — transformative automation — starts from the question of what the process is supposed to achieve and designs for that outcome, unconstrained by how it has historically been done. It tends to produce something that looks less like "the old process, automated" and more like "a different approach to the same problem." Sometimes it eliminates process steps that existed only because manual execution required them. Sometimes it changes who is involved and when. Sometimes it makes previously impractical approaches — real-time rather than batch, individual rather than aggregate, predictive rather than reactive — suddenly feasible.
 
 The risk of the faster horse is not that it delivers nothing. It delivers exactly what it promises: a faster version of what existed before. The risk is that what existed before was shaped by constraints that no longer apply, and that automating it locks in those constraints at scale.
+
+## This pattern is older than AI
+
+The Swansea University Earth Observation group in the mid-1990s needed more compute. Geospatial analysis of satellite data is computationally intensive, and the Sun Microsystems Sparc workstations we used were increasingly the constraint. The obvious answer — the faster horse — was more Sparcs. The problem was budget: Sparc workstations were expensive, and the group couldn't afford to simply expand.
+
+The question that unlocked the solution was the right one: what did we actually need? The requirement was compute capacity for scientific analysis. There was no fundamental requirement for Sparc hardware specifically. That reframing opened up a completely different option: Slackware Linux on commodity PC hardware, built in-house. Five Sparc 5s became fifteen dual-CPU Linux workstations for roughly the same total cost — and the Linux machines were substantially faster. We later extended this to Beowulf clustering, building basic parallel processing capability from commodity parts at a time when that kind of infrastructure would otherwise have required a significantly larger budget.
+
+The transformative option was not obviously available until someone asked the right question. The faster horse would have been a modest improvement that preserved the underlying constraint. The transformative option removed the constraint entirely by questioning whether it was actually a constraint.
+
+The structural reason this worked is that the technology landscape had shifted in a way that the existing mental model hadn't registered. Sun Sparcs had been the right answer for a long time. The assumption that they remained the right answer was never examined because the question had never been reopened. Linux and commodity hardware had reached a threshold where they were genuinely competitive — but that threshold only became visible once someone stopped assuming the answer and started asking the question.
+
+This is the dynamic that the faster horse problem captures. The mental model of what is possible is shaped by what has been done before. Asking a different question is not a technical act; it is a cognitive one.
 
 ## Why organisations default to it
 

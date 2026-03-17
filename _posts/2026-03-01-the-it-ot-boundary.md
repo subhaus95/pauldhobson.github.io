@@ -3,6 +3,7 @@ layout: post
 title: "The IT/OT Boundary"
 date: 2026-03-01
 tags: [operational-technology, platform-strategy, infrastructure]
+image: /assets/images/pipeline.jpg
 excerpt: "Industrial organisations have two technology estates that rarely speak to each other. Closing that gap is one of the more interesting problems in enterprise technology right now — and at least when things go wrong, you can visit the site."
 ---
 

@@ -4,19 +4,52 @@ title: Paul Hobson
 permalink: /
 ---
 
+<!-- HERO -->
 <section class="hero-section">
   <div class="hero">
     <div class="hero-content">
-      <h1 class="hero-headline">Technology leader. Platform strategy. Organisational design.</h1>
-      <p class="hero-sub">I work at the intersection of engineering, product, and the organisational structures that make complex systems function. I write about what I learn.</p>
+      <h1 class="hero-headline">Technology leader.<br>Platform strategy.<br>Organisational design.</h1>
+      <p class="hero-sub">I work at the intersection of engineering, platforms, and the organisational structures that make complex systems function. I write about what I learn.</p>
       <div class="hero-actions">
         <a href="{{ '/projects/' | relative_url }}" class="hero-cta-btn">Selected work →</a>
         <a href="{{ '/about/' | relative_url }}" class="btn btn-ghost">About me</a>
       </div>
     </div>
+    {% if site.posts.first %}
+    {% assign _latest = site.posts.first %}
+    <div class="ph-hero-latest">
+      <a href="{{ _latest.url | relative_url }}" class="ph-hero-post">
+        <span class="ph-hero-post-label">Latest</span>
+        <h2 class="ph-hero-post-title">{{ _latest.title }}</h2>
+        <p class="ph-hero-post-excerpt">{{ _latest.excerpt | strip_html | truncatewords: 22 }}</p>
+        <span class="ph-hero-post-read">Read →</span>
+      </a>
+    </div>
+    {% endif %}
   </div>
 </section>
 
+<!-- RECENT WRITING -->
+{% if site.posts.size > 0 %}
+<section class="posts-section">
+  <div class="posts-section-inner">
+
+    <div class="section-header">
+      <h2 class="section-title">Writing</h2>
+      <a href="{{ '/archive/' | relative_url }}" class="section-link">All writing →</a>
+    </div>
+
+    <div class="posts-grid">
+      {% for post in site.posts limit: 4 %}
+      {% include post-card.html post=post %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+<!-- SELECTED WORK -->
 <section class="posts-section">
   <div class="posts-section-inner">
 
@@ -25,111 +58,73 @@ permalink: /
       <a href="{{ '/projects/' | relative_url }}" class="section-link">All projects →</a>
     </div>
 
-    <div class="posts-grid">
-      <article class="post-card">
-        <div class="card-image card-image--no-feature"></div>
-        <div class="card-body">
-          <span class="card-tag">Platform strategy</span>
-          <h3 class="card-title">Platform architecture and team topology</h3>
-          <p class="card-excerpt">How platform teams create leverage — and why the organisational design usually matters more than the technology.</p>
+    <div class="ph-work-list">
+
+      <a href="{{ '/projects/#technology-platforms-plains' | relative_url }}" class="ph-work-item">
+        <span class="ph-work-num">01</span>
+        <div class="ph-work-body">
+          <h3>Technology Platforms, Plains</h3>
+          <p>Platform strategy and infrastructure modernisation for large-scale energy operations across North America. Evolving complex technology ecosystems while maintaining operational reliability at the IT/OT boundary.</p>
         </div>
-      </article>
-      <article class="post-card">
-        <div class="card-image card-image--no-feature"></div>
-        <div class="card-body">
-          <span class="card-tag">Organisational design</span>
-          <h3 class="card-title">Engineering leadership in large organisations</h3>
-          <p class="card-excerpt">What changes when you move from building systems to building the teams and structures that build systems.</p>
+        <span class="ph-work-meta">2023 — present<br>Calgary, AB</span>
+      </a>
+
+      <a href="{{ '/projects/#enterprise-architecture-westjet' | relative_url }}" class="ph-work-item">
+        <span class="ph-work-num">02</span>
+        <div class="ph-work-body">
+          <h3>Enterprise Architecture, WestJet</h3>
+          <p>Built and led enterprise architecture practice for a major airline — establishing governance, developing long-term modernisation roadmaps, and aligning technology investment with operational priorities across four years of significant organisational change.</p>
         </div>
-      </article>
-      <article class="post-card">
-        <div class="card-image card-image--no-feature"></div>
-        <div class="card-body">
-          <span class="card-tag">Writing</span>
-          <h3 class="card-title">Technical writing and public work</h3>
-          <p class="card-excerpt">Selected essays and notes from this site — writing that has been useful to others or that I keep returning to.</p>
-          <a href="{{ '/archive/' | relative_url }}" class="card-read-more">Browse writing →</a>
+        <span class="ph-work-meta">2018 — 2022<br>Calgary, AB</span>
+      </a>
+
+      <a href="{{ '/projects/#technology-transformation-ubc' | relative_url }}" class="ph-work-item">
+        <span class="ph-work-num">03</span>
+        <div class="ph-work-body">
+          <h3>Technology Transformation, UBC</h3>
+          <p>Director of Enterprise Architecture for one of Canada's largest universities — aligning technology investment with institutional strategy across a diverse ecosystem of research, academic, and administrative systems.</p>
         </div>
-      </article>
+        <span class="ph-work-meta">2011 — 2018<br>Vancouver, BC</span>
+      </a>
+
+      <a href="{{ '/projects/#digital-infrastructure-cardiff' | relative_url }}" class="ph-work-item">
+        <span class="ph-work-num">04</span>
+        <div class="ph-work-body">
+          <h3>Digital Infrastructure, Cardiff University</h3>
+          <p>Early enterprise architecture and digital transformation for a major UK research university, including participation in national programmes on service-oriented infrastructure for higher education.</p>
+        </div>
+        <span class="ph-work-meta">2005 — 2011<br>Cardiff, UK</span>
+      </a>
+
     </div>
 
   </div>
 </section>
 
-{% if site.posts.size > 0 %}
+<!-- ELSEWHERE -->
 <section class="posts-section">
   <div class="posts-section-inner">
 
     <div class="section-header">
-      <h2 class="section-title">Recent writing</h2>
-      <a href="{{ '/archive/' | relative_url }}" class="section-link">View archive →</a>
+      <h2 class="section-title">Elsewhere</h2>
+      <a href="{{ '/about/' | relative_url }}" class="section-link">About me →</a>
     </div>
 
-    <div class="posts-grid">
-      {% for post in site.posts limit: 3 %}
-      {% include post-card.html post=post %}
-      {% endfor %}
+    <div class="ph-elsewhere-grid">
+
+      <a href="https://wayward.house" target="_blank" rel="noopener noreferrer" class="ph-elsewhere-item">
+        <span class="ph-elsewhere-label">Geography &amp; Modelling</span>
+        <span class="ph-elsewhere-name">Wayward House</span>
+        <span class="ph-elsewhere-desc">Long-form writing on geography, spatial modelling, and computational science.</span>
+      </a>
+
+<a href="https://sub.haus" target="_blank" rel="noopener noreferrer" class="ph-elsewhere-item">
+        <span class="ph-elsewhere-label">Home Lab</span>
+        <span class="ph-elsewhere-name">Sub Haus</span>
+        <span class="ph-elsewhere-desc">Open infrastructure, home lab experiments, and technology tinkering.</span>
+      </a>
+
     </div>
 
-  </div>
-</section>
-</section>
-{% endif %}
-
-<section class="posts-section">
-  <div class="posts-section-inner">
-    <div class="section-header">
-      <h2 class="section-title">Other properties</h2>
-      <a href="https://linkedin.com/in/pauldhobson" class="section-link" target="_blank" rel="noopener noreferrer">LinkedIn profile →</a>
-    </div>
-
-    <div class="posts-grid">
-      <article class="post-card">
-         <a href="https://wayward.house" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
-          <div class="card-body">
-            <span class="card-tag">Geography & Modelling</span>
-            <h3 class="card-title">Wayward House</h3>
-            <p class="card-excerpt">Publishing platform for geography and modelling.</p>
-          </div>
-         </a>
-      </article>
-      <article class="post-card">
-         <a href="https://sub.haus" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
-          <div class="card-body">
-            <span class="card-tag">Technology</span>
-            <h3 class="card-title">Sub Haus</h3>
-            <p class="card-excerpt">Home lab and technology experiments.</p>
-          </div>
-         </a>
-      </article>
-      <article class="post-card">
-         <a href="https://loomcollective.ai" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
-          <div class="card-body">
-            <span class="card-tag">Consultancy</span>
-            <h3 class="card-title">Loom Collective</h3>
-            <p class="card-excerpt">AI Consultancy and technology advisory.</p>
-          </div>
-         </a>
-      </article>
-      <article class="post-card">
-         <a href="https://qshift.blog" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">
-          <div class="card-body">
-            <span class="card-tag">Energy Industry</span>
-            <h3 class="card-title">Q-Shift</h3>
-            <p class="card-excerpt">Energy Industry Technology Consultant site.</p>
-          </div>
-         </a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="subscribe-cta">
-  <div class="subscribe-cta-inner">
-    <div class="subscribe-cta-text">
-      <strong class="subscribe-cta-heading">Get in touch</strong>
-      <p class="subscribe-cta-body">For consulting enquiries, collaboration, or just a conversation.</p>
-    </div>
-    <a href="{{ '/contact/' | relative_url }}" class="subscribe-cta-btn">Contact →</a>
   </div>
 </section>

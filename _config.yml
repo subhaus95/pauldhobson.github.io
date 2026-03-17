@@ -79,6 +79,24 @@ pagination:
     after: 2
 
 hide_subscribe_cta: true
+hide_author: true
+
+footer_tagline: "Technology leader. Platform strategy. Organisational design."
+footer_nav_title: "Links"
+footer_topics_title: "Topics"
+footer_topics:
+  - title: Platform Engineering
+    url: /tag/platform-engineering/
+  - title: Enterprise Architecture
+    url: /tag/enterprise-architecture/
+  - title: Technology Strategy
+    url: /tag/technology-strategy/
+  - title: Operational Technology
+    url: /tag/operational-technology/
+  - title: Automation
+    url: /tag/automation/
+  - title: Organisational Design
+    url: /tag/organisational-design/
 
 navigation:
   - title: Home

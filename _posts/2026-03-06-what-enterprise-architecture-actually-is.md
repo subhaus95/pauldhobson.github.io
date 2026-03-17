@@ -3,6 +3,7 @@ layout: post
 title: "What Enterprise Architecture Actually Is"
 date: 2026-03-06
 tags: [enterprise-architecture, technology-leadership, strategy]
+image: /assets/images/building-construction.jpg
 excerpt: "The job description says technology governance. The actual job is organisational therapy, cat herding, and learning to inch things forward without snapping the elastic band."
 ---
 

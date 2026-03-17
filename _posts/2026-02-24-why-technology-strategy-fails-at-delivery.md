@@ -3,6 +3,7 @@ layout: post
 title: "Why Technology Strategy Fails at Delivery"
 date: 2026-02-24
 tags: [technology-strategy, organisational-design, delivery]
+image: /assets/images/unfinished.jpg
 excerpt: "Most technology strategies are reasonable documents. The problem isn't the strategy. It's everything that happens between the strategy being approved and the work actually getting done."
 ---
 
