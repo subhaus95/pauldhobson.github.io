@@ -11,7 +11,7 @@ brand: paul
 brand_name: "Paul Hobson"
 brand_default_theme: "light"
 
-fonts_url: ""
+fonts_url: "https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap"
 tokens_css: ""
 
 # Theme submodule paths

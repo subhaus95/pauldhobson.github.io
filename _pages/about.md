@@ -4,16 +4,29 @@ title: About
 permalink: /about/
 ---
 
-I'm Paul Hobson — a technology leader with a background in platform strategy and organisational design.
+I'm Paul Hobson — a technology leader based in Calgary, working at the intersection of platform engineering, enterprise architecture, and organisational design.
 
-I've spent my career at the intersection of engineering, product, and the organisational structures that make (or prevent) good work from happening. I'm interested in how teams build leverage, how platforms create and destroy value, and what it actually takes to change how a large institution operates.
+My career has been spent in complex, large-scale technology environments: energy infrastructure at Plains, airline operations at WestJet, higher education at the University of British Columbia and Cardiff University. The problems that interest me aren't purely technical — they're about how organisations build and sustain the capability to use technology well. That's a harder problem than it looks, and it's one I keep finding myself in the middle of.
 
-This site is where I write and document work. It's a mix of long-form thinking, project notes, and occasional technical writing.
+I write here about what I'm thinking about: platform strategy, architectural decision-making, the relationship between technology and organisational structure, and occasionally the broader landscape of how technology is changing the industries I've worked in.
 
 ## Background
 
-Platform strategy. Organisational design. Engineering leadership. I've worked on complex systems where the technical and the organisational problems are inseparable.
+My early career was in research computing and geospatial analysis — work that involved large datasets, scientific computing, and collaboration with earth observation programmes. That background shapes how I think: I'm drawn to problems that require integrating technical rigour with an understanding of systems and context.
+
+Since then I've led technology strategy and enterprise architecture across four organisations spanning energy, aviation, and higher education. The throughline is complex operational environments where software, infrastructure, and physical systems intersect — and where the technology decisions carry real consequences.
+
+At the moment my work is focused on technology platform strategy in large operational environments at [Plains](https://www.plains.com/).
+
+## Other work
+
+I run several other publishing properties alongside this site:
+
+- **[Wayward House](https://wayward.house)** — long-form writing on geography, modelling, and computational science
+- **[Q-Shift](https://qshift.blog)** — technology strategy in the energy industry
+- **[Loom Collective](https://loomcollective.ai)** — AI consultancy and advisory work
+- **[Sub Haus](https://sub.haus)** — home lab, open infrastructure, and technology experiments
 
 ## Contact
 
-Find me on [GitHub](https://github.com/pauldhobson) or via the [contact page](/contact/).
+For consulting enquiries, collaboration, or just a conversation — use the [contact page](/contact/) or find me on [LinkedIn](https://linkedin.com/in/pauldhobson).
