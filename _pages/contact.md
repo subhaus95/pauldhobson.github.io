@@ -13,7 +13,7 @@ permalink: /contact/
 .contact-form textarea { resize: vertical; min-height: 140px; }
 </style>
 
-Get in touch using the form below. I also hang around on [GitHub](https://github.com/pauldhobson) if you'd prefer to open a discussion there.
+Get in touch using the form below. I also hang around on [GitHub](https://github.com/subhaus95) if you'd prefer to open a discussion there.
 
 <form class="contact-form" action="https://formspree.io/f/xbdabrjw" method="POST">
   <input type="hidden" name="_site" value="Paul Hobson">

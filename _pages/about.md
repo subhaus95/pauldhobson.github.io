@@ -24,8 +24,8 @@ I run several other publishing properties alongside this site:
 
 - **[Wayward House](https://wayward.house)** — long-form writing on geography, modelling, and computational science
 - **[Q-Shift](https://qshift.blog)** — technology strategy in the energy industry
-- **[Loom Collective](https://loomcollective.ai)** — AI consultancy and advisory work
-- **[Sub Haus](https://sub.haus)** — home lab, open infrastructure, and technology experiments
+- **[Loom Template ](https://loomcollective.github.io)** — a multi-site Jekyll Theme
+- **[Sub Haus](https://sub.haus)** — home lab, open infrastructure, and technology experiments and personal blog
 
 ## Contact
 
