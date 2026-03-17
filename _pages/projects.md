@@ -2,6 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
+excerpt: "Platform strategy, enterprise architecture, and organisational design — across energy, aviation, and higher education."
 ---
 
 ## Technology Platforms, Plains {#technology-platforms-plains}
